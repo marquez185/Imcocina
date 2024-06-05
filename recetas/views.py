@@ -9,7 +9,7 @@ def editarRecetas(request):
     return HttpResponse("EditarRecetas")
 
 def buscarRecetas(request):
-    return HttpResponse("BuscarRecetas")
+    return render(request, "recetas/buscarRecetas.html")
 
 def guardarRecetas(request):
     return HttpResponse("GuardarRecetas")
