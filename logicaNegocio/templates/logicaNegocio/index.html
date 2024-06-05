@@ -5,49 +5,51 @@
 {% block content %}
 
 <main class="flex-fill">
-  <section class="text-center d-flex flex-column justify-content-center align-items-center vh-30 bg-light">
-      <div>
-          <h1>Bienvenido a IMCOCINA</h1>
-          <p>Encuentra recetas deliciosas y saludables con los ingredientes que tienes en casa.</p>
-          <div class="input-group mb-3 justify-content-center">
-              <input type="text" class="form-control col-md-6" placeholder="Busca por ingredientes...">
-              <div class="input-group-append">
-                  <button class="btn btn-dark" type="button">Buscar Recetas</button>
-              </div>
-          </div>
-      </div>
-  </section>
-  <section class="d-flex flex-row flex-wrap justify-content-around align-items-stretch vh-55 bg-transparent mb-5">
-      <div class="card mb-4 h-100 rounded bg-white-transparent">
-          <div class="card-body text-center">
-              <h5 class="card-title">Recetas Populares</h5>
-              <div class="highlight-content d-flex flex-column justify-content-center">
-                  <div class="recipe">Ensalada de Quinoa</div>
-                  <p><img src="path_to_image.jpg" class="card-img-top" alt="Ensalada de Quinoa"></p>
-                  <div class="recipe">Salmón al Horno</div>
-                  <p><img src="path_to_image.jpg" class="card-img-top" alt="Salmon al horno"></p>
-              </div>
-          </div>
-      </div>
-      <div class="card mb-4 h-100 rounded bg-white-transparent">
-          <div class="card-body text-center">
-              <h5 class="card-title">Noticias de Nutrición</h5>
-              <div class="highlight-content d-flex flex-column justify-content-center">
-                  <div class="news">Los Beneficios de los Antioxidantes</div>
-                  <img src="path_to_image.jpg" class="card-img-top" alt="Noticias de Nutrición">
-              </div>
-          </div>
-      </div>
-      <div class="card mb-4 h-100 rounded bg-white-transparent">
-          <div class="card-body text-center">
-              <h5 class="card-title">Consejos de Reducción de Desperdicio</h5>
-              <div class="highlight-content d-flex flex-column justify-content-center">
-                  <div class="tips">Cómo Aprovechar Todos los Alimentos</div>
-                   <img src="path_to_image.jpg" class="card-img-top" alt="Consejos de Reducción de Desperdicio">
-              </div>
-          </div>
-      </div>
-  </section>
+    <section class="text-center d-flex flex-column justify-content-center align-items-center vh-30 welcome-section bg-light ">
+        <div class="card bg-semitransparent">
+            <div class="card card-body">
+                <h1>Bienvenido a IMCOCINA</h1>
+                <p>Encuentra recetas deliciosas y saludables con los ingredientes que tienes en casa.</p>
+                <div class="input-group mb-3 justify-content-center">
+                    <input type="text" class="form-control col-md-6" placeholder="Busca por ingredientes...">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" type="button">Buscar Recetas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="d-flex flex-row flex-wrap justify-content-around align-items-stretch vh-55 bg-transparent mb-5">
+        <div class="card mb-4 h-100 rounded bg-white-transparent">
+            <div class="card-body text-center">
+                <h5 class="card-title">Recetas Populares</h5>
+                <div class="highlight-content d-flex flex-column justify-content-center">
+                    <div class="recipe">Ensalada de Quinoa</div>
+                    <p><img src="path_to_image.jpg" class="card-img-top" alt="Ensalada de Quinoa"></p>
+                    <div class="recipe">Salmón al Horno</div>
+                    <p><img src="path_to_image.jpg" class="card-img-top" alt="Salmon al horno"></p>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4 h-100 rounded bg-white-transparent">
+            <div class="card-body text-center">
+                <h5 class="card-title">Noticias de Nutrición</h5>
+                <div class="highlight-content d-flex flex-column justify-content-center">
+                    <div class="news">Los Beneficios de los Antioxidantes</div>
+                    <img src="path_to_image.jpg" class="card-img-top" alt="Noticias de Nutrición">
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4 h-100 rounded bg-white-transparent">
+            <div class="card-body text-center">
+                <h5 class="card-title">Consejos de Reducción de Desperdicio</h5>
+                <div class="highlight-content d-flex flex-column justify-content-center">
+                    <div class="tips">Cómo Aprovechar Todos los Alimentos</div>
+                     <img src="path_to_image.jpg" class="card-img-top" alt="Consejos de Reducción de Desperdicio">
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 
 {% endblock %}
