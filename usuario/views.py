@@ -1,13 +1,13 @@
 from django.shortcuts import render, HttpResponse
 
 def login(request):
-    return HttpResponse("Login")
+    return render(request, "usuario/login.html")
 
 def registro(request):
-    return HttpResponse("Registro")
+    return render(request, "usuario/registro.html")
 
 def password(request):
-    return HttpResponse("Password")
+    return render(request, "usuario/password.html")
 
 def tokenPassword(request):
     return HttpResponse("TokenPassword")
