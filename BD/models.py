@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
- 
+
 class SuperUsuario(AbstractUser):
     nombre = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
@@ -11,19 +11,35 @@ class SuperUsuario(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nombre', 'username']
 
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='superusuario_groups',  # Cambio de related_name
+        blank=True,
+        help_text='The groups this user belongs to.',
+        verbose_name='groups',
+    )
+
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='superusuario_permissions',  # Cambio de related_name
+        blank=True,
+        help_text='Specific permissions for this user.',
+        verbose_name='user permissions',
+    )
+
 class Usuario(models.Model):
-    id = models.AutoField(primary_key=True) 
-    nombre = models.CharField(max_length=30)  
-    apellido = models.CharField(max_length=30)  
-    email = models.EmailField(unique=True) 
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    email = models.EmailField(unique=True)
     contraseña = models.CharField(max_length=30)
-    perfil = models.OneToOneField('Perfil', on_delete=models.CASCADE, related_name='usuario')
+    perfil = models.OneToOneField('Perfil', on_delete=models.CASCADE, related_name='usuario_perfil')
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido}" 
+        return f"{self.nombre} {self.apellido}"
 
 class Perfil(models.Model):
-    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
+    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name='perfil_usuario')
     preferencias = models.TextField()
 
     def __str__(self):
@@ -35,8 +51,8 @@ class Busqueda(models.Model):
     calorias = models.IntegerField()
 
     def __str__(self):
-        return self.titulo  
-    
+        return self.titulo
+
 class Receta(models.Model):
     id = models.AutoField(primary_key=True)
     titulo = models.CharField(max_length=100)
