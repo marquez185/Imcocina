@@ -9,5 +9,6 @@ urlpatterns = [
     path('verificacion/', views.verificacion, name="Verificacion"),
     path('password/', views.password, name="Password"),
     path('tokenPassword/', views.tokenPassword, name="TokenPassword"),
-    path('updatePerfil', views.updatePerfil, name="UpdatePerfil"),
+    path('perfil/', views.perfil, name="Perfil"),
+    path('updatePerfil/', views.updatePerfil, name="UpdatePerfil"),
 ]

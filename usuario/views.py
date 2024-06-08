@@ -12,6 +12,9 @@ def verificacion(request):
 def password(request):
     return render(request, "usuario/password.html")
 
+def perfil(request):
+    return render(request, "usuario/perfil.html")
+
 def tokenPassword(request):
     return HttpResponse("TokenPassword")
 
