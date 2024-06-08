@@ -1,0 +1,41 @@
+/*
+body {
+    background: #100F0F;
+    background: linear-gradient(to right, #100F0F, #403E3E);  
+    
+}*/
+body{
+    background: url("../img/bg_login.jpg") rgba(0,0,0,0.3);
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.ig{
+    background: url("../img/IMCOCINA_logo.png");
+    width: 500px;
+    height: 500px;
+    background-size:cover;
+    background-position:center;
+}
+
+.rg{
+    background: url("../img/IMCOCINA_logo.png");
+    width: 600px;
+    height: 600px;
+    background-size:cover;
+    background-position:center;
+}
+
+.vg{
+    background: url("../img/IMCOCINA_logo.png");
+    width: 500px;
+    height: 500px;
+    background-size:cover;
+    background-position:center;
+}
+.bf{
+    background-color: rgba(17, 16, 16, 0.218);
+    backdrop-filter: blur(10px);
+}

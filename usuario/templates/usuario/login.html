@@ -1,27 +1,56 @@
-{% extends "logicaNegocio/base.html" %}
+<!DOCTYPE html>
+<html lang="es">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
+    crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'usuario/css/styleslogin.css'%}"/>
+    <title>Login</title>
+</head>
+<body class="vh-100 overflow.hidden py-5">
+    <div class="container bf w-75 text-body mt-5 rounded shadow">
+        <div class="row align-items-stretch">
+            <div class="col ig d-none d-md-block d-lg-block  rounded-start">
 
-{% block content %}
-<main class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card w-25">
-        <div class="card-body">
-            <h2 class="card-title text-center">Iniciar Sesión</h2>
-            <form method="post" action="{% url 'usuario:Login' %}">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="username">Usuario</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
-            </form>
-            <div class="text-center mt-3">
-                <a href="{% url 'usuario:Registro' %}" class="btn btn-secondary btn-block">Crear Cuenta</a>
-                <a href="{% url 'usuario:Password' %}" class="d-block mt-2">¿Has olvidado tu contraseña?</a>
+            </div>
+            <div class="col">
+                <h2 class="fw-bold text-white text-center py-5">Iniciar sesión</h2>
+
+                <form action="" method="POST">
+                    <div class="mb-4">
+                        <label for="email" class="form-label text-white">Correo Electronico</label>
+                        <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label text-white">Contraseña</label>
+                        <input type="password" class="form-control" name="contrasena" placeholder="Ingresa tu contraseña" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-dark">Iniciar sesión</button>
+                    </div>
+
+                    <div class="my-3 text-white-50 text-center">
+                        <p class="mb-2">
+                            ¿Olvidaste tu contraseña? 
+                            <a href="{% url 'usuario:Verificacion' %}" class="text-info">Recuperar aquí</a>.
+                        </p>
+                        <p>
+                            ¿No tienes cuenta? 
+                            <a href="{% url 'usuario:Registro' %}" class="text-info">Crear cuenta</a>.
+                        </p>
+                    </div>
+                    
+                </form>
             </div>
         </div>
     </div>
-</main>
-{% endblock %}
+</body>
+</html>

@@ -6,6 +6,9 @@ def login(request):
 def registro(request):
     return render(request, "usuario/registro.html")
 
+def verificacion(request):
+    return render(request, "usuario/verificacion.html")
+
 def password(request):
     return render(request, "usuario/password.html")
 
