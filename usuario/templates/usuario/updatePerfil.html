@@ -13,7 +13,7 @@
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'usuario/css/styleslogin.css' %}"/>
-    <title>Login</title>
+    <title>Actualizar Perfil</title>
 </head>
 <body class="vh-100 overflow-hidden py-5">
     <div class="container bf w-75 text-body mt-5 rounded shadow">
@@ -22,7 +22,7 @@
                 <!-- Aquí puedes agregar una imagen o algún contenido adicional -->
             </div>
             <div class="col">
-                <h2 class="fw-bold text-white text-center py-5">Iniciar sesión</h2>
+                <h2 class="fw-bold text-white text-center py-5">Actualizar Perfil</h2>
                 {% if messages %}
                     <div>
                         {% for message in messages %}
@@ -30,31 +30,31 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                <form action="{% url 'usuario:Login' %}" method="post">
+                <form action="{% url 'usuario:UpdatePerfil' %}" method="post">
                     {% csrf_token %}
                     <div class="mb-4">
-                        <label for="email" class="form-label text-white">Correo Electronico</label>
-                        <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" required>
+                        <label for="nombre" class="form-label text-white">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" value="{{ request.user.first_name }}" required>
                     </div>
                     <div class="mb-4">
-                        <label for="password" class="form-label text-white">Contraseña</label>
-                        <input type="password" class="form-control" name="password" placeholder="Ingresa tu contraseña" required>
+                        <label for="apellido" class="form-label text-white">Apellido</label>
+                        <input type="text" class="form-control" name="apellido" value="{{ request.user.last_name }}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="form-label text-white">Correo Electrónico</label>
+                        <input type="email" class="form-control" name="email" value="{{ request.user.email }}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="telefono" class="form-label text-white">Teléfono</label>
+                        <input type="text" class="form-control" name="telefono" value="{{ request.user.telefono }}" required>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-dark">Iniciar sesión</button>
-                    </div>
-
-                    <div class="my-3 text-white-50 text-center">
-                        <p class="mb-2">
-                            ¿Olvidaste tu contraseña? 
-                            <a href="{% url 'usuario:Verificacion' %}" class="text-info">Recuperar aquí</a>.
-                        </p>
-                        <p>
-                            ¿No tienes cuenta? 
-                            <a href="{% url 'usuario:Registro' %}" class="text-info">Crear cuenta</a>.
-                        </p>
+                        <button type="submit" class="btn btn-dark">Actualizar</button>
                     </div>
                 </form>
+                <div class="d-grid mt-3">
+                    <a href="{% url 'usuario:Perfil' %}" class="btn btn-light">Volver al Perfil</a>
+                </div>
             </div>
         </div>
     </div>
