@@ -37,16 +37,25 @@
                         <input type="text" class="form-control" name="nombre" value="{{ request.user.first_name }}" required>
                     </div>
                     <div class="mb-4">
-                        <label for="apellido" class="form-label text-white">Apellido</label>
+                        <label for="apellido" class="form-label text-white">Apellidos</label>
                         <input type="text" class="form-control" name="apellido" value="{{ request.user.last_name }}" required>
                     </div>
                     <div class="mb-4">
                         <label for="email" class="form-label text-white">Correo Electrónico</label>
                         <input type="email" class="form-control" name="email" value="{{ request.user.email }}" required>
                     </div>
+                    <hr>
                     <div class="mb-4">
-                        <label for="telefono" class="form-label text-white">Teléfono</label>
-                        <input type="text" class="form-control" name="telefono" value="{{ request.user.telefono }}" required>
+                        <label for="password_actual" class="form-label text-white">Contraseña Actual</label>
+                        <input type="password" class="form-control" name="password_actual" placeholder="Ingresa tu contraseña actual">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password_nueva" class="form-label text-white">Nueva Contraseña</label>
+                        <input type="password" class="form-control" name="password_nueva" placeholder="Ingresa tu nueva contraseña">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password_nueva_confirmacion" class="form-label text-white">Confirmar Nueva Contraseña</label>
+                        <input type="password" class="form-control" name="password_nueva_confirmacion" placeholder="Confirma tu nueva contraseña">
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-dark">Actualizar</button>

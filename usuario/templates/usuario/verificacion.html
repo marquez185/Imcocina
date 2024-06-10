@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -12,26 +12,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
     crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'usuario/css/styleslogin.css'%}"/>
-    <title>Verificacion</title>
+    <link rel="stylesheet" href="{% static 'usuario/css/styleslogin.css' %}"/>
+    <title>Verificación de Correo Electrónico</title>
 </head>
-<body class="vh-100 overflow.hidden py-5">
+<body class="vh-100 overflow-hidden py-5">
     <div class="container bf w-75 text-body mt-5 rounded shadow">
         <div class="row align-items-stretch">
-                <div class="col">
-                    <h2 class="fw-bold text-white text-center py-5">Verificación de Correo Electrónico</h2>
-                <form action="verificacion" method="POST">
+            <div class="col">
+                <h2 class="fw-bold text-white text-center py-5">Verificación de Correo Electrónico</h2>
+                {% if messages %}
+                    <div>
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <form action="{% url 'usuario:Verificacion' %}" method="POST">
+                    {% csrf_token %}
                     <div class="mb-4">
-                    <label for="correo" class="form-label text-white">Correo Electrónico:</label>
-                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingresa tu correo electrónico" required><br><br>
+                        <label for="email" class="form-label text-white">Correo Electrónico</label>
+                        <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" required>
                     </div>
                     <div class="d-grid">
-                        <input type="submit" class="btn btn-dark" value="Verificar">
+                        <button type="submit" class="btn btn-dark">Verificar</button>
                     </div>
                 </form>
-                </div>
-                <div class="col vg d-none d-md-block d-lg-block rounded-start">
-                </div>
+            </div>
+            <div class="col vg d-none d-md-block d-lg-block rounded-start">
+                <!-- Aquí puedes agregar una imagen o algún contenido adicional -->
+            </div>
         </div>
     </div>
 </body>

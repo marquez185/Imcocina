@@ -13,7 +13,7 @@
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'usuario/css/styleslogin.css' %}"/>
-    <title>Login</title>
+    <title>Perfil del Usuario</title>
 </head>
 <body class="vh-100 overflow-hidden py-5">
     <div class="container bf w-75 text-body mt-5 rounded shadow">
@@ -22,7 +22,7 @@
                 <!-- Aquí puedes agregar una imagen o algún contenido adicional -->
             </div>
             <div class="col">
-                <h2 class="fw-bold text-white text-center py-5">Iniciar sesión</h2>
+                <h2 class="fw-bold text-white text-center py-5">Perfil del Usuario</h2>
                 {% if messages %}
                     <div>
                         {% for message in messages %}
@@ -30,31 +30,24 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                <form action="{% url 'usuario:Login' %}" method="post">
-                    {% csrf_token %}
+                {% if user.is_authenticated %}
                     <div class="mb-4">
-                        <label for="email" class="form-label text-white">Correo Electronico</label>
-                        <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" required>
+                        <label class="form-label text-white">Nombre:</label>
+                        <p class="form-control">{{ user.first_name }} {{ user.last_name }}</p>
                     </div>
                     <div class="mb-4">
-                        <label for="password" class="form-label text-white">Contraseña</label>
-                        <input type="password" class="form-control" name="password" placeholder="Ingresa tu contraseña" required>
+                        <label class="form-label text-white">Correo Electrónico:</label>
+                        <p class="form-control">{{ user.email }}</p>
+                    </div>
+                    <div class="d-grid mb-3">
+                        <a href="{% url 'usuario:UpdatePerfil' %}" class="btn btn-primary">Actualizar Perfil</a>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-dark">Iniciar sesión</button>
+                        <a href="{% url 'usuario:Login' %}" class="btn btn-danger">Cerrar Sesión</a>
                     </div>
-
-                    <div class="my-3 text-white-50 text-center">
-                        <p class="mb-2">
-                            ¿Olvidaste tu contraseña? 
-                            <a href="{% url 'usuario:Verificacion' %}" class="text-info">Recuperar aquí</a>.
-                        </p>
-                        <p>
-                            ¿No tienes cuenta? 
-                            <a href="{% url 'usuario:Registro' %}" class="text-info">Crear cuenta</a>.
-                        </p>
-                    </div>
-                </form>
+                {% else %}
+                    <div class="alert alert-warning">No has iniciado sesión. <a href="{% url 'usuario:Login' %}">Inicia sesión aquí</a>.</div>
+                {% endif %}
             </div>
         </div>
     </div>

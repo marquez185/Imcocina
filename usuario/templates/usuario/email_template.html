@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restablecimiento de Contraseña</title>
+</head>
+<body>
+    <p>Hola {{ user.first_name }},</p>
+    <p>Recibiste este correo porque solicitaste restablecer tu contraseña. Haz clic en el enlace de abajo para restablecerla:</p>
+    <p><a href="{{ reset_link }}">Restablecer contraseña</a></p>
+    <p>Si no solicitaste restablecer tu contraseña, ignora este correo.</p>
+</body>
+</html>

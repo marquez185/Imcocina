@@ -1,8 +1,18 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login  # Importar la función login como auth_login
+from django.contrib.auth import authenticate, login as auth_login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_str
+
 
 def login(request):
     if request.method == 'POST':
@@ -21,7 +31,6 @@ def registro(request):
         nombre = request.POST['nombre']
         apellido = request.POST['apellido']
         email = request.POST['email']
-        telefono = request.POST['telefono']
         contrasena = request.POST['contrasena']
         contrasena_correcta = request.POST['contrasena_correcta']
 
@@ -30,7 +39,7 @@ def registro(request):
                 messages.error(request, 'El correo electrónico ya está registrado')
             else:
                 user = User.objects.create_user(
-                    username=email,  # Usar el email como nombre de usuario
+                    username=email,
                     email=email,
                     password=contrasena,
                     first_name=nombre,
@@ -48,11 +57,68 @@ def registro(request):
     
     return render(request, 'usuario/registro.html')
 
+# View for password reset verification
 def verificacion(request):
-    return render(request, "usuario/verificacion.html")
+    if request.method == 'POST':
+        email = request.POST['email']
+        try:
+            user = User.objects.get(email=email)
+            token = default_token_generator.make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            reset_link = request.build_absolute_uri(f'/password-reset/{uid}/{token}/')
+            email_subject = 'Restablecimiento de contraseña'
+            email_body = render_to_string('usuario/email_template.html', {
+                'user': user,
+                'reset_link': reset_link,
+            })
+            email = EmailMessage(
+                email_subject,
+                email_body,
+                'wraithjmz@outlook.com',  # Reemplaza con tu correo electrónico configurado
+                [user.email],
+            )
+            email.content_subtype = "html"  # Esto asegura que el correo se envíe como HTML
+            email.send(fail_silently=False)
+            messages.success(request, 'Se ha enviado un enlace de restablecimiento de contraseña a tu correo electrónico.')
+            return redirect('usuario:Login')
+        except User.DoesNotExist:
+            messages.error(request, 'No existe una cuenta con ese correo electrónico.')
+            return redirect('usuario:Verificacion')
+    return render(request, 'usuario/verificacion.html')
 
-def password(request):
-    return render(request, "usuario/password.html")
+# View for password reset
+def password(request, uidb64=None, token=None):
+    if request.method == 'POST':
+        uid = request.POST.get('uid')
+        token = request.POST.get('token')
+        password = request.POST.get('password')
+        password_confirm = request.POST.get('password_confirm')
+        
+        if password != password_confirm:
+            messages.error(request, 'Las contraseñas no coinciden.')
+            return redirect(f'/password-reset/{uid}/{token}/')
+        
+        try:
+            uid = force_str(urlsafe_base64_decode(uid))
+            user = User.objects.get(pk=uid)
+            
+            if default_token_generator.check_token(user, token):
+                user.set_password(password)
+                user.save()
+                messages.success(request, 'Tu contraseña ha sido restablecida con éxito.')
+                return redirect('usuario:Login')
+            else:
+                messages.error(request, 'El enlace de restablecimiento de contraseña no es válido o ha caducado.')
+                return redirect('usuario:Verificacion')
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            messages.error(request, 'El enlace de restablecimiento de contraseña no es válido o ha caducado.')
+            return redirect('usuario:Verificacion')
+    else:
+        context = {
+            'uid': uidb64,
+            'token': token
+        }
+        return render(request, 'usuario/password.html', context)
 
 def perfil(request):
     return render(request, "usuario/perfil.html")
@@ -66,15 +132,40 @@ def updatePerfil(request):
         nombre = request.POST['nombre']
         apellido = request.POST['apellido']
         email = request.POST['email']
-        telefono = request.POST['telefono']
+        password_actual = request.POST.get('password_actual')
+        password_nueva = request.POST.get('password_nueva')
+        password_nueva_confirmacion = request.POST.get('password_nueva_confirmacion')
+        
+        user = request.user
+        
+        # Verificar si el nuevo correo electrónico ya está en uso por otro usuario
+        if User.objects.filter(email=email).exclude(pk=user.pk).exists():
+            messages.error(request, 'El correo electrónico ya está en uso por otro usuario.')
+            return redirect('usuario:UpdatePerfil')
         
         # Actualizar la información del usuario
-        user = request.user
         user.first_name = nombre
         user.last_name = apellido
-        user.email = email
-        user.telefono = telefono  # Asegúrate de que el campo teléfono esté en el modelo User
+        
+        # Si el correo electrónico ha cambiado, actualizar username y email
+        if user.email != email:
+            user.email = email
+            user.username = email
+        
+        # Actualizar la contraseña si se proporcionaron todos los campos
+        if password_actual and password_nueva and password_nueva_confirmacion:
+            if not check_password(password_actual, user.password):
+                messages.error(request, 'La contraseña actual es incorrecta.')
+                return redirect('usuario:UpdatePerfil')
+            if password_nueva != password_nueva_confirmacion:
+                messages.error(request, 'Las nuevas contraseñas no coinciden.')
+                return redirect('usuario:UpdatePerfil')
+            user.set_password(password_nueva)
+        
         user.save()
+
+        # Actualizar la sesión del usuario
+        update_session_auth_hash(request, user)
 
         messages.success(request, 'Perfil actualizado correctamente')
         return redirect('usuario:Perfil')
