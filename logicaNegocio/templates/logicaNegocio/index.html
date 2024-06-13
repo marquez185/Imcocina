@@ -35,8 +35,14 @@
             <div class="card-body text-center">
                 <h5 class="card-title">Noticias de Nutrición</h5>
                 <div class="highlight-content d-flex flex-column justify-content-center">
-                    <div class="news">Los Beneficios de los Antioxidantes</div>
-                    <img src="path_to_image.jpg" class="card-img-top" alt="Noticias de Nutrición">
+                        {% for item in news %}
+                            <li>
+                                <p>{{ item.title }}</p>
+                                <h2><a href="{{ item.link }}"><img src="{{ item.image_url }}" alt="{{ item.title }}"></a></h2>
+                                <!--img src="{{ item.image_url }}" alt="{{ item.title }}"-->
+                                <p>Publicado el: {{ item.pub_date }}</p>
+                            </li>
+                        {% endfor %}
                 </div>
             </div>
         </div>
