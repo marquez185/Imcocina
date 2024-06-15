@@ -1,6 +1,8 @@
 import requests
 from django.shortcuts import render, HttpResponse
 from bs4 import BeautifulSoup
+from googlesearch import search
+
 
 def fetch_bbc_news():
     url = 'https://www.bbc.com/mundo/topics/cdr5617v8d8t'
@@ -32,6 +34,28 @@ def fetch_bbc_news():
 
     return news_list
 
+# search_tips.py
+def search_tips():
+    waste_reduction_query = "Consejos de la reducción de desperdicio en alimentos"
+    food_utilization_query = "Cómo aprovechar todos los alimentos"
+    
+    waste_reduction_results = []
+    food_utilization_results = []
+
+    for link in search(waste_reduction_query, num_results=2, lang="es"):
+        waste_reduction_results.append(link)
+
+    for link in search(food_utilization_query, num_results=4, lang="es"):
+        food_utilization_results.append(link)
+    
+    return waste_reduction_results, food_utilization_results
+
+
 def index(request):
     news = fetch_bbc_news()
-    return render(request, "logicaNegocio/index.html", {'news': news})
+    waste_reduction_links, food_utilization_links = search_tips()
+    return render(request, "logicaNegocio/index.html", {
+        'news': news,
+        'waste_reduction_links': waste_reduction_links,
+        'food_utilization_links': food_utilization_links,
+    })

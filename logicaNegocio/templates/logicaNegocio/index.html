@@ -3,9 +3,22 @@
 {% load static %}
 
 {% block content %}
+<section class="container">
+    <!-- Sección Recetas Populares (Carrito) -->
+    <section class="card mb-4 rounded bg-white-transparent">
+        <div class="card-body text-center">
+            <h5 class="card-title">Recetas Populares</h5>
+            <div class="highlight-content d-flex flex-column justify-content-center">
+                <div class="recipe">Ensalada de Quinoa</div>
+                <p><img src="{% static 'path_to_image.jpg' %}" class="card-img-top" alt="Ensalada de Quinoa"></p>
+                <div class="recipe">Salmón al Horno</div>
+                <p><img src="{% static 'path_to_image.jpg' %}" class="card-img-top" alt="Salmón al Horno"></p>
+            </div>
+        </div>
+    </section>
 
-<main class="flex-fill">
-    <section class="text-center d-flex flex-column justify-content-center align-items-center vh-30 welcome-section bg-light ">
+    <!-- Sección Buscador -->
+    <section class="text-center d-flex flex-column justify-content-center align-items-center vh-30 welcome-section bg-light">
         <div class="card bg-semitransparent">
             <div class="card card-body">
                 <h1>Bienvenido a IMCOCINA</h1>
@@ -19,44 +32,69 @@
             </div>
         </div>
     </section>
-    <section class="d-flex flex-row flex-wrap justify-content-around align-items-stretch vh-55 bg-transparent mb-5">
-        <div class="card mb-4 h-100 rounded bg-white-transparent">
-            <div class="card-body text-center">
-                <h5 class="card-title">Recetas Populares</h5>
-                <div class="highlight-content d-flex flex-column justify-content-center">
-                    <div class="recipe">Ensalada de Quinoa</div>
-                    <p><img src="path_to_image.jpg" class="card-img-top" alt="Ensalada de Quinoa"></p>
-                    <div class="recipe">Salmón al Horno</div>
-                    <p><img src="path_to_image.jpg" class="card-img-top" alt="Salmon al horno"></p>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-4 h-100 rounded bg-white-transparent">
+
+    <!-- Título de la Sección de Información Adicional -->
+    <section class="additional-info-title mt-5">
+        <h3 class="text-center">Información Adicional</h3>
+    </section>
+
+    <!-- Información Adicional Subdividida -->
+    <section class="row mt-3">
+        <!-- Sección Artículo: Noticias de Nutrición -->
+        <article class="card mb-4 h-100 rounded bg-white-transparent col-md-4 article">
             <div class="card-body text-center">
                 <h5 class="card-title">Noticias de Nutrición</h5>
                 <div class="highlight-content d-flex flex-column justify-content-center">
+                    <ul class="list-news">
                         {% for item in news %}
-                            <li>
+                            <li class="news-item">
                                 <p>{{ item.title }}</p>
-                                <h2><a href="{{ item.link }}"><img src="{{ item.image_url }}" alt="{{ item.title }}"></a></h2>
-                                <!--img src="{{ item.image_url }}" alt="{{ item.title }}"-->
+                                <a href="{{ item.link }}">
+                                    <img src="{{ item.image_url }}" alt="{{ item.title }}" class="news-image">
+                                </a>
                                 <p>Publicado el: {{ item.pub_date }}</p>
                             </li>
                         {% endfor %}
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="card mb-4 h-100 rounded bg-white-transparent">
+        </article>
+
+        <!-- Sección Artículo: Consejos de Reducción de Desperdicio -->
+        <article class="card mb-4 h-100 rounded bg-white-transparent col-md-4 article">
             <div class="card-body text-center">
                 <h5 class="card-title">Consejos de Reducción de Desperdicio</h5>
                 <div class="highlight-content d-flex flex-column justify-content-center">
-                    <div class="tips">Cómo Aprovechar Todos los Alimentos</div>
-                     <img src="path_to_image.jpg" class="card-img-top" alt="Consejos de Reducción de Desperdicio">
+                    {% for link in waste_reduction_links %}
+                            <div class="tips mb-3">
+                                <a href="{{ link }}">
+                                    <img src="{% static 'logicaNegocio/img/' %}{{ forloop.counter }}dc.jpg" class="card-img-top mb-2" alt="Consejos de Reducción de Desperdicio">
+                                </a>
+                                <p>Haz clic en la imagen para más detalles</p>
+                            </div>
+                    {% endfor %}
                 </div>
             </div>
-        </div>
+        </article>
+
+
+
+        <!-- Sección Artículo: Cómo Aprovechar Todos los Alimentos -->
+        <article class="card mb-4 h-100 rounded bg-white-transparent col-md-4 article">
+            <div class="card-body text-center">
+                <h5 class="card-title">Cómo Aprovechar Todos los Alimentos</h5>
+                <div class="highlight-content d-flex flex-column justify-content-center">
+                    {% for link in food_utilization_links %}
+                        <div class="tips">
+                            <a href="{{ link }}">
+                                <img src="{% static 'logicaNegocio/img/' %}{{ forloop.counter }}ca.jpg" class="card-img-top" alt="Cómo Aprovechar Todos los Alimentos">
+                            </a>
+                            <p>Haz clic en la imagen para más detalles</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </article>
     </section>
-</main>
-
+</section>
 {% endblock %}
-

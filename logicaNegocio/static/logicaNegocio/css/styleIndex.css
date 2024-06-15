@@ -1,32 +1,32 @@
-body {
-    font-family: 'Lora';
-    background: url('../img/fondoMain.jpg') repeat;
+/* styleIndex.css */
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Raleway';
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lora';
+    background: url('../img/fondoMain.jpg') repeat;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway';
 }
 
 h1 {
     font-weight: bold;
-    /*text-shadow: 2px 2px 4px #93ef88; /* Añade sombra para remarcar el texto */
     color: black;
 }
 
 p {
-    font-style: italic; /* Texto en cursiva */
+    font-style: italic;
     color: black;
 }
 
 .navbar {
-    background-color: #4caf50; /* Un color verde similar al de la imagen */
+    background-color: #4caf50;
 }
 
 .navbar-nav .nav-item .nav-link {
@@ -34,8 +34,8 @@ p {
 }
 
 .navbar-nav .nav-item.active .nav-link {
-    background-color: #388e3c; /* Un tono más oscuro de verde para resaltar */
-    border-radius: 4px; /* Opcional: redondear bordes para mejor visualización */
+    background-color: #388e3c;
+    border-radius: 4px;
 }
 
 .card-title {
@@ -72,14 +72,16 @@ p {
 }
 
 .bg-semitransparent {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para el texto */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 footer {
-    background-color: #4caf50; /* Un color verde similar al de la imagen */
+    background-color: #4caf50;
     color: white;
     text-align: center;
     padding: 20px;
+    margin-top: auto;
+    width: 100%;
 }
 
 .card {
@@ -103,4 +105,53 @@ footer {
     section.d-flex {
         flex-direction: column !important;
     }
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Ajustes adicionales para asegurar que las secciones no se solapen */
+.row {
+    margin-bottom: 2rem;
+}
+
+/* Añadir márgenes y padding para mayor separación */
+.row > .col-md-4 {
+    padding: 20px;
+}
+
+.article {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .article {
+        margin-bottom: 40px;
+    }
+}
+
+/* Estilos para el título de la sección de información adicional */
+.additional-info-title {
+    margin-bottom: 2rem;
+}
+
+.additional-info-title h3 {
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos para la lista de noticias */
+.list-news {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-news .news-item {
+    margin-bottom: 20px;
 }
