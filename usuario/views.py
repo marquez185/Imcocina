@@ -12,6 +12,20 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
+import re
+
+def validar_contrasena(contrasena):
+    if len(contrasena) < 8:
+        return False, "La contraseña debe tener al menos 8 caracteres."
+    if not re.search("[A-Z]", contrasena):
+        return False, "La contraseña debe contener al menos una letra mayúscula."
+    if not re.search("[a-z]", contrasena):
+        return False, "La contraseña debe contener al menos una letra minúscula."
+    if not re.search("[0-9]", contrasena):
+        return False, "La contraseña debe contener al menos un número."
+    if not re.search("[!@#$%^&*(),.?\":{}|<>]", contrasena):
+        return False, "La contraseña debe contener al menos un carácter especial."
+    return True, ""
 
 
 def login(request):
@@ -35,6 +49,11 @@ def registro(request):
         contrasena_correcta = request.POST['contrasena_correcta']
 
         if contrasena == contrasena_correcta:
+            es_valida, mensaje = validar_contrasena(contrasena)
+            if not es_valida:
+                messages.error(request, mensaje)
+                return redirect('usuario:Registro')
+            
             if User.objects.filter(email=email).exists():
                 messages.error(request, 'El correo electrónico ya está registrado')
             else:
@@ -160,6 +179,13 @@ def updatePerfil(request):
             if password_nueva != password_nueva_confirmacion:
                 messages.error(request, 'Las nuevas contraseñas no coinciden.')
                 return redirect('usuario:UpdatePerfil')
+
+            # Validar la nueva contraseña
+            es_valida, mensaje = validar_contrasena(password_nueva)
+            if not es_valida:
+                messages.error(request, mensaje)
+                return redirect('usuario:UpdatePerfil')
+                
             user.set_password(password_nueva)
         
         user.save()
