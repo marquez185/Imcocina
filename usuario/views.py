@@ -196,4 +196,4 @@ def updatePerfil(request):
         messages.success(request, 'Perfil actualizado correctamente')
         return redirect('usuario:Perfil')
 
-    return render(request, 'usuario/updateperfil.html')
+    return render(request, 'usuario/updatePerfil.html')
