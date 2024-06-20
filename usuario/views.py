@@ -29,16 +29,19 @@ def validar_contrasena(contrasena):
 
 
 def login(request):
+    registro_exitoso = False
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
         user = authenticate(request, username=email, password=password)
         if user is not None:
             auth_login(request, user)
+            messages.success(request, 'Has iniciado sesión correctamente')
+            registro_exitoso = True
             return redirect('usuario:Perfil')  # Redirige a la página de perfil o donde prefieras
         else:
             messages.error(request, 'Correo electrónico o contraseña incorrectos')
-    return render(request, 'usuario/login.html')
+    return render(request, 'usuario/login.html', {'registro_exitoso': registro_exitoso})
 
 def registro(request):
     if request.method == 'POST':

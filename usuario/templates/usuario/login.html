@@ -59,4 +59,13 @@
         </div>
     </div>
 </body>
+
+{% if registro_exitoso %}
+<script>
+    setTimeout(function() {
+        window.location.href = "{% url 'Perfil' %}";
+    }, 4000);
+</script>
+{% endif %}
+
 </html>
