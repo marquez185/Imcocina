@@ -1,0 +1,157 @@
+/* styleBase.css */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lora';
+    background: url('../img/fondoMain.jpg') repeat;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway';
+}
+
+h1 {
+    font-weight: bold;
+    color: black;
+}
+
+p {
+    font-style: italic;
+    color: black;
+}
+
+.navbar {
+    background-color: #4caf50;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    background-color: #388e3c;
+    border-radius: 4px;
+}
+
+.card-title {
+    border-bottom: 2px solid #f4f4f4;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.highlight-content .recipe, .highlight-content .news, .highlight-content .tips {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.highlight-content .recipe:hover, .highlight-content .news:hover, .highlight-content .tips:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.vh-30 {
+    height: 30vh;
+}
+
+.vh-55 {
+    height: 55vh;
+}
+
+.welcome-section {
+    background: url('../img/fondoMain.jpg') repeat;
+    color: white;
+}
+
+.bg-semitransparent {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+footer {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    width: 100%;
+}
+
+.card {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.mb-5 {
+    margin-bottom: 5vh;
+}
+
+@media (max-width: 450px) {
+    .vh-55 {
+        height: auto;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    section.d-flex {
+        flex-direction: column !important;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Ajustes adicionales para asegurar que las secciones no se solapen */
+.row {
+    margin-bottom: 2rem;
+}
+
+/* Añadir márgenes y padding para mayor separación */
+.row > .col-md-4 {
+    padding: 20px;
+}
+
+.article {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .article {
+        margin-bottom: 40px;
+    }
+}
+
+/* Estilos para el título de la sección de información adicional */
+.additional-info-title {
+    margin-bottom: 2rem;
+}
+
+.additional-info-title h3 {
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos para la lista de noticias */
+.list-news {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-news .news-item {
+    margin-bottom: 20px;
+}

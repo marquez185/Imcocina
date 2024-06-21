@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IMCOCINA</title>
+  <title>Auth</title>
   
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -16,7 +16,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   
   <!-- Styles -->
-  <link rel="stylesheet" href="{% static 'logicaNegocio/css/styleIndex.css' %}">
+  <link rel="stylesheet" href="{% static 'usuario/css/styleBase.css' %}">
+  <link rel="stylesheet" href="{% static 'usuario/css/styleslogin.css' %}"/>
 </head>
 
 <body>
@@ -33,12 +34,6 @@
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item {% if request.path_info == '/' %}active{% endif %} px-lg-4">
                       <a class="nav-link text-white" href="{% url 'Index' %}">Inicio</a>
-                  </li>
-                  <li class="nav-item nav-item {% if '/buscarRecetas' in request.path %} active {% endif %} px-lg-4">
-                      <a class="nav-link text-white" href="{% url 'recetas:BuscarRecetas' %}">Explorar Recetas</a>
-                  </li>
-                  <li class="nav-item {% if '/perfil' in request.path %} active {% endif %} px-lg-4">
-                      <a class="nav-link text-white" href="{% url 'usuario:Perfil' %}">Perfil</a>
                   </li>
                   <li class="nav-item {% if '/nosotros' in request.path %} active {% endif %} px-lg-4">
                     <a class="nav-link text-white" href="{% url 'Nosotros' %}">Nosotros</a>

@@ -59,3 +59,6 @@ def index(request):
         'waste_reduction_links': waste_reduction_links,
         'food_utilization_links': food_utilization_links,
     })
+
+def nosotros(request):
+    return render(request, "logicaNegocio/nosotros.html")

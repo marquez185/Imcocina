@@ -1,47 +1,35 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
-    crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
-    crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'usuario/css/styleslogin.css' %}"/>
-    <title>Verificación de Correo Electrónico</title>
-</head>
-<body class="vh-100 overflow-hidden py-5">
-    <div class="container bf w-75 text-body mt-5 rounded shadow">
-        <div class="row align-items-stretch">
-            <div class="col">
-                <h2 class="fw-bold text-white text-center py-5">Verificación de Correo Electrónico</h2>
-                {% if messages %}
-                    <div>
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <form action="{% url 'usuario:Verificacion' %}" method="POST">
-                    {% csrf_token %}
-                    <div class="mb-4">
-                        <label for="email" class="form-label text-white">Correo Electrónico</label>
-                        <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" required>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-dark">Verificar</button>
-                    </div>
-                </form>
-            </div>
-            <div class="col vg d-none d-md-block d-lg-block rounded-start">
-                <!-- Aquí puedes agregar una imagen o algún contenido adicional -->
-            </div>
+{% extends "usuario/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container bf w-75 text-body mt-5 rounded shadow">
+    <div class="row align-items-stretch">
+        <div class="col">
+            <h2 class="fw-bold text-white text-center py-5">Verificación de Correo Electrónico</h2>
+            {% if messages %}
+                <div>
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <form action="{% url 'usuario:Verificacion' %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="email" class="form-label text-white">Correo Electrónico</label>
+                    <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" required>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">Verificar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col vg d-none d-md-block d-lg-block rounded-start">
+            <!-- Aquí puedes agregar una imagen o algún contenido adicional -->
         </div>
     </div>
-</body>
-</html>
+</div>
+
+{% endblock %}
