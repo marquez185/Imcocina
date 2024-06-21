@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 
 # Create your models here.
 
@@ -62,6 +62,16 @@ class Receta(models.Model):
     informacion_nutricional = models.TextField()
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='recetas')
     creador = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.titulo
+
+class Favoritos(models.Model):
+    titulo = models.CharField(max_length=255)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    url_id_receta = models.CharField(max_length=255, blank=True, null=True)
+    img = models.ImageField(upload_to='favoritos/')
+    id_validada = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.titulo
