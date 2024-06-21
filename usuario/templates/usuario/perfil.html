@@ -3,6 +3,14 @@
 {% load static %}
 
 {% block content %}
+<div class="position-fixed top-0 end-0 m-3">
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'usuario:Logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+        </form>
+    {% endif %}
+</div>
 
 <div class="container bf w-75 text-body mt-5 rounded shadow">
     <div class="row align-items-stretch">
@@ -30,14 +38,10 @@
                 <div class="d-grid mb-3">
                     <a href="{% url 'usuario:UpdatePerfil' %}" class="btn btn-primary">Actualizar Perfil</a>
                 </div>
-                <div class="d-grid">
-                    <a href="{% url 'usuario:Login' %}" class="btn btn-danger">Cerrar Sesión</a>
-                </div>
             {% else %}
                 <div class="alert alert-warning">No has iniciado sesión. <a href="{% url 'usuario:Login' %}">Inicia sesión aquí</a>.</div>
             {% endif %}
         </div>
     </div>
 </div>
-
 {% endblock %}

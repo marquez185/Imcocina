@@ -119,6 +119,12 @@ def password(request, uidb64=None, token=None):
         if password != password_confirm:
             messages.error(request, 'Las contraseñas no coinciden.')
             return redirect(f'/password-reset/{uid}/{token}/')
+
+        # Validar la nueva contraseña
+        es_valida, mensaje = validar_contrasena(password)
+        if not es_valida:
+            messages.error(request, mensaje)
+            return redirect(f'/password-reset/{uid}/{token}/')
         
         try:
             uid = force_str(urlsafe_base64_decode(uid))
@@ -141,6 +147,7 @@ def password(request, uidb64=None, token=None):
             'token': token
         }
         return render(request, 'usuario/password.html', context)
+
 
 def perfil(request):
     return render(request, "usuario/perfil.html")

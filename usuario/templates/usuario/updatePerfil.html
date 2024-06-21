@@ -3,6 +3,14 @@
 {% load static %}
 
 {% block content %}
+<div class="position-fixed top-0 end-0 m-3">
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'usuario:Logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+        </form>
+    {% endif %}
+</div>
 
 <div class="container bf w-75 text-body mt-5 rounded shadow">
     <div class="row align-items-stretch">
@@ -56,5 +64,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

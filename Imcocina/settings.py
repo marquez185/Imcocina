@@ -73,6 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Imcocina.wsgi.application'
 
+LOGOUT_REDIRECT_URL = '/login/'  # O cualquier otra URL a la que quieras redirigir
+
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

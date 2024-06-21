@@ -39,3 +39,35 @@ body{
     background-color: rgba(17, 16, 16, 0.218);
     backdrop-filter: blur(10px);
 }
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.position-fixed {
+    position: fixed !important;
+}
+.top-0 {
+    top: -5 !important;
+}
+.end-0 {
+    right: 0 !important;
+}
+.m-3 {
+    margin: 1rem !important;
+}
