@@ -14,9 +14,12 @@
   
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.css" rel="stylesheet">
   
   <!-- Styles -->
   <link rel="stylesheet" href="{% static 'logicaNegocio/css/styleIndex.css' %}">
+  <link rel="stylesheet" href="{% static 'logicaNegocio/css/styleBuscador.css' %}">
+  <link rel="stylesheet" href="{% static 'logicaNegocio/css/styleBanner.css' %}">
 </head>
 
 <body>
@@ -31,18 +34,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ml-auto">
-                  <li class="nav-item {% if request.path_info == '/' %}active{% endif %} px-lg-4">
+                  <li class="nav-item {% if request.path_info == '/' %}active{% endif %} px-lg-2">
                       <a class="nav-link text-white" href="{% url 'Index' %}">Inicio</a>
                   </li>
-                  <li class="nav-item nav-item {% if '/buscarRecetas' in request.path %} active {% endif %} px-lg-4">
+                  <li class="nav-item nav-item {% if '/buscarRecetas' in request.path %} active {% endif %} px-lg-2">
                       <a class="nav-link text-white" href="{% url 'recetas:BuscarRecetas' %}">Explorar Recetas</a>
                   </li>
-                  <li class="nav-item {% if '/perfil' in request.path %} active {% endif %} px-lg-4">
-                      <a class="nav-link text-white" href="{% url 'usuario:Perfil' %}">Perfil</a>
-                  </li>
-                  <li class="nav-item {% if '/nosotros' in request.path %} active {% endif %} px-lg-4">
+                  <li class="nav-item {% if '/nosotros' in request.path %} active {% endif %} px-lg-2">
                     <a class="nav-link text-white" href="{% url 'Nosotros' %}">Nosotros</a>
-                </li>
+                  </li>
+                  <li class="nav-item {% if '/noticias' in request.path %} active {% endif %} px-lg-2">
+                    <a class="nav-link text-white" href="{% url 'Noticias' %}">Noticias Nutrición</a>
+                  </li>
+                  <li class="nav-item {% if '/perfil' in request.path %} active {% endif %} px-lg-2">
+                    <a class="nav-link text-white" href="{% url 'usuario:Perfil' %}">Perfil</a>
+                  </li>
               </ul>
           </div>
         </nav>
@@ -67,6 +73,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script>
   <script src="{% static 'logicaNegocio/js/scripts.js' %}"></script>
 </body>
 

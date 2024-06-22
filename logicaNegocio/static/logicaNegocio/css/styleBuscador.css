@@ -1,0 +1,136 @@
+/* Estilos para el div del buscador */
+.welcome-section {
+    background: url('../img/fondoMain.jpg') repeat;
+    color: white;
+    margin-top: 80px; /* Aumentar este valor para más espacio */
+}
+
+.bg-semitransparent {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.vh-30 {
+    height: 30vh;
+}
+
+.vh-55 {
+    height: 55vh;
+}
+
+/* Estilos adicionales para los botones de filtro */
+.filter-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #4caf50; /* Cambiar al color del navbar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+    text-align: center; /* Centrar el texto dentro del botón */
+}
+
+.filter-button:hover {
+    background-color: #388e3c; /* Cambiar al color de hover del navbar */
+}
+
+.filter-button-container {
+    display: flex;
+    align-items: center;
+    margin: 10px; /* Espacio alrededor de cada botón */
+}
+
+.range-slider {
+    width: 400px; /* Ajusta el ancho del slider */
+    margin-top: 10px;
+    position: relative;
+}
+
+.filter-button.active {
+    background-color: #388e3c;
+}
+
+.filter-button.active::after {
+    content: '✔';
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 1.2em;
+}
+
+.filter-options {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 10;
+    width: 200px;
+    padding: 10px;
+}
+
+.filter-options select,
+.filter-options input[type="text"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #f4f4f4;
+    outline: none;
+}
+
+.range-values {
+    display: flex;
+    justify-content: space-between;
+    width: 400px; /* Asegura que los valores se alineen con el slider */
+    margin-bottom: 10px; /* Ajusta el espacio entre los valores y el slider */
+    position: relative;
+    top: -10px; /* Ajusta la posición vertical de los valores */
+    color: black; /* Cambia el color del texto de las calorías a negro */
+}
+
+/* Estilos para el control deslizante noUiSlider */
+.noUi-handle {
+    background: white;
+    border: 2px solid #4caf50;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.noUi-connect {
+    background: #4caf50;
+}
+
+.noUi-target {
+    background: #ddd;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.noUi-horizontal .noUi-handle {
+    top: -6px;
+}
+
+/* Estilos para la disposición horizontal de los botones */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.filter-buttons-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
+}
+
+

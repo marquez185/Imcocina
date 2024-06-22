@@ -1,0 +1,36 @@
+{% extends "logicaNegocio/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <!-- Título de la Sección Nosotros -->
+    <section class="additional-info-title mt-5">
+        <h3 class="text-center">NOTICIAS</h3>
+    </section>
+
+        <!-- Información Adicional Subdividida -->
+        <section class="row mt-3">
+            <!-- Sección Artículo: Noticias de Nutrición -->
+            <article class="card mb-4 h-100 rounded bg-white-transparent col-md-4 article">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Noticias de Nutrición</h5>
+                    <div class="highlight-content d-flex flex-column justify-content-center">
+                        <ul class="list-news">
+                            {% for item in news %}
+                                <li class="news-item">
+                                    <p>{{ item.title }}</p>
+                                    <a href="{{ item.link }}">
+                                        <img src="{{ item.image_url }}" alt="{{ item.title }}" class="news-image">
+                                    </a>
+                                    <p>Publicado el: {{ item.pub_date }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </article>
+    
+        </section>
+
+{% endblock %}

@@ -3,5 +3,7 @@ from logicaNegocio import views
 
 urlpatterns = [
     path('', views.index, name="Index"),
+    path('noticias/', views.noticias, name="Noticias"),
+    path('desperdicio/', views.desperdicio, name="ConsejosDesperdicio"),
     path('nosotros/', views.nosotros, name="Nosotros"),
 ]

@@ -1,0 +1,44 @@
+{% extends "logicaNegocio/base.html" %}
+
+{% load static %}
+
+{% block content %}
+ <section>
+ <!-- Sección Artículo: Consejos de Reducción de Desperdicio -->
+ <article class="card mb-4 h-100 rounded bg-white-transparent col-md-4 article">
+    <div class="card-body text-center">
+        <h5 class="card-title">Consejos de Reducción de Desperdicio</h5>
+        <div class="highlight-content d-flex flex-column justify-content-center">
+            {% for link in waste_reduction_links %}
+                    <div class="tips mb-3">
+                        <a href="{{ link }}">
+                            <img src="{% static 'logicaNegocio/img/' %}{{ forloop.counter }}dc.jpg" class="card-img-top mb-2" alt="Consejos de Reducción de Desperdicio">
+                        </a>
+                        <p>Haz clic en la imagen para más detalles</p>
+                    </div>
+            {% endfor %}
+        </div>
+    </div>
+</article>
+
+
+
+<!-- Sección Artículo: Cómo Aprovechar Todos los Alimentos -->
+<article class="card mb-4 h-100 rounded bg-white-transparent col-md-4 article">
+    <div class="card-body text-center">
+        <h5 class="card-title">Cómo Aprovechar Todos los Alimentos</h5>
+        <div class="highlight-content d-flex flex-column justify-content-center">
+            {% for link in food_utilization_links %}
+                <div class="tips">
+                    <a href="{{ link }}">
+                        <img src="{% static 'logicaNegocio/img/' %}{{ forloop.counter }}ca.jpg" class="card-img-top" alt="Cómo Aprovechar Todos los Alimentos">
+                    </a>
+                    <p>Haz clic en la imagen para más detalles</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</article>
+</section>
+
+{% endblock %}

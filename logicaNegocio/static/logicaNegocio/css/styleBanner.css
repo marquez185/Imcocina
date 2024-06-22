@@ -1,0 +1,105 @@
+/* styleBanner.css */
+.card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.recipe img {
+    width: 100%;
+    height: 200px; /* Aumentar altura para mejor visualización */
+    object-fit: cover; /* Para que las imágenes se ajusten al contenedor */
+    border-radius: 8px;
+}
+
+.recipe .card-body {
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.recipe .card-titulo{
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333; /* Opcional: cambiar el color para mayor contraste */
+}
+
+.recipe .btn {
+    margin-top: auto; /* Para empujar el botón hacia el fondo */
+}
+
+.additional-info-title {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.additional-info-title h3 {
+    font-weight: bold;
+    color: #000;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.additional-info-title .btn {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.additional-info-title .btn-info .btn-primary{
+    background-color: #4caf50; /* Color del navbar y footer */
+    border-color: #4caf50;
+    color: white;
+}
+
+.additional-info-title .btn-info:hover {
+    background-color: #388e3c;
+    border-color: #388e3c;
+}
+
+.bg-white-transparent {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.bg-semitransparent {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.carrito .row {
+    justify-content: center;
+}
+
+/* Estilos adicionales para el banner */
+.card-title {
+    border-bottom: 2px solid #f4f4f4;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.75rem; /* Aumentar el tamaño de la fuente */
+    color: #333; /* Opcional: cambiar el color para mayor contraste */
+}
+
+.highlight-content .recipe, .highlight-content .news, .highlight-content .tips {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.highlight-content .recipe:hover, .highlight-content .news:hover, .highlight-content .tips:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}

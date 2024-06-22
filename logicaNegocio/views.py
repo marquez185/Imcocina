@@ -2,6 +2,7 @@ import requests
 from django.shortcuts import render, HttpResponse
 from bs4 import BeautifulSoup
 from googlesearch import search
+from recetas import API_recetas as API
 
 
 def fetch_bbc_news():
@@ -52,10 +53,19 @@ def search_tips():
 
 
 def index(request):
+    recetas = API.buscar_recetas_aleatorias(num_recetas=5)
+    context = {'recetas': recetas}
+    return render(request, "logicaNegocio/index.html", context)
+
+def noticias(request):
     news = fetch_bbc_news()
-    waste_reduction_links, food_utilization_links = search_tips()
-    return render(request, "logicaNegocio/index.html", {
+    return render(request, "logicaNegocio/noticias.html", {
         'news': news,
+    })
+
+def desperdicio(request):
+    waste_reduction_links, food_utilization_links = search_tips()
+    return render(request, "logicaNegocio/desperdicio.html", {
         'waste_reduction_links': waste_reduction_links,
         'food_utilization_links': food_utilization_links,
     })

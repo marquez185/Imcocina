@@ -66,13 +66,8 @@ p {
     height: 55vh;
 }
 
-.welcome-section {
-    background: url('../img/fondoMain.jpg') repeat;
-    color: white;
-}
-
-.bg-semitransparent {
-    background-color: rgba(0, 0, 0, 0.5);
+.vh-5 {
+    height: 5vh;
 }
 
 footer {
@@ -146,12 +141,20 @@ footer {
     margin-bottom: 20px;
 }
 
-/* Estilos para la lista de noticias */
-.list-news {
-    list-style-type: none;
-    padding: 0;
+/* Estilos para los botones en la sección de información adicional */
+.additional-info-title .btn-info {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    color: white;
+    transition: background-color 0.3s ease;
 }
 
-.list-news .news-item {
-    margin-bottom: 20px;
+.additional-info-title .btn-info:hover {
+    background-color: #388e3c;
+    border-color: #388e3c;
+}
+
+/* Reducir el espacio entre las secciones */
+.container > .row {
+    margin-top: 0; /* Ajustar si es necesario */
 }
