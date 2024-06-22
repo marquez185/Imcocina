@@ -12,93 +12,67 @@
             <div class="card card-body">
                 <h1>Bienvenido a IMCOCINA</h1>
                 <p>Encuentra recetas deliciosas y saludables con los ingredientes que tienes en casa.</p>
-                <div class="input-group mb-3 justify-content-center">
-                    <input type="text" class="form-control col-md-6" placeholder="Busca por ingredientes...">
+                <form method="GET" action="{% url 'recetas:BuscarRecetas' %}" class="input-group mb-3 justify-content-center">
+                    <input type="text" name="ingredientes" class="form-control col-md-6" placeholder="Busca por ingredientes...">
                     <div class="input-group-append">
-                        <button class="btn btn-dark" type="button">Buscar Recetas</button>
+                        <button class="btn btn-dark" type="submit">Buscar Recetas</button>
                     </div>
-                </div>
+                </form>
                 <!-- Botones de filtros de búsqueda en disposición horizontal -->
                 <div class="filter-buttons">
-                    <div class="filter-button-container">
-                        <button class="filter-button" id="diet-button">Dieta</button>
-                        <div class="filter-options" id="diet-options">
-                            <select class="form-control" id="diet" name="diet">
-                                <option value="balanced">Equilibrada</option>
-                                <option value="high-fiber">Alta en fibra</option>
-                                <option value="high-protein">Alta en proteínas</option>
-                                <option value="low-carb">Baja en carbohidratos</option>
-                                <option value="low-fat">Baja en grasas</option>
-                                <option value="low-sodium">Baja en sodio</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="filter-button-container">
-                        <button class="filter-button" id="health-button">Salud</button>
-                        <div class="filter-options" id="health-options">
-                            <select class="form-control" id="health" name="health">
-                                <option value="alcohol-cocktail">Cóctel con alcohol</option>
-                                <option value="alcohol-free">Sin alcohol</option>
-                                <option value="celery-free">Sin apio</option>
-                                <option value="crustacean-free">Sin crustáceos</option>
-                                <option value="dairy-free">Sin lácteos</option>
-                                <option value="DASH">DASH</option>
-                                <option value="egg-free">Sin huevo</option>
-                                <option value="fish-free">Sin pescado</option>
-                                <option value="fodmap-free">Sin FODMAP</option>
-                                <option value="gluten-free">Sin gluten</option>
-                                <option value="immuno-supportive">Inmuno-apoyo</option>
-                                <option value="keto-friendly">Keto</option>
-                                <option value="kidney-friendly">Amigable para riñones</option>
-                                <option value="kosher">Kosher</option>
-                                <option value="low-fat-abs">Bajo en grasas</option>
-                                <option value="low-potassium">Bajo en potasio</option>
-                                <option value="low-sugar">Bajo en azúcar</option>
-                                <option value="lupine-free">Sin altramuz</option>
-                                <option value="Mediterranean">Mediterránea</option>
-                                <option value="mollusk-free">Sin moluscos</option>
-                                <option value="mustard-free">Sin mostaza</option>
-                                <option value="no-oil-added">Sin aceite añadido</option>
-                                <option value="paleo">Paleo</option>
-                                <option value="peanut-free">Sin maní</option>
-                                <option value="pescatarian">Pescatariana</option>
-                                <option value="pork-free">Sin cerdo</option>
-                                <option value="red-meat-free">Sin carne roja</option>
-                                <option value="sesame-free">Sin sésamo</option>
-                                <option value="shellfish-free">Sin mariscos</option>
-                                <option value="soy-free">Sin soya</option>
-                                <option value="sugar-conscious">Consciente del azúcar</option>
-                                <option value="sulfite-free">Sin sulfitos</option>
-                                <option value="tree-nut-free">Sin frutos secos</option>
-                                <option value="vegan">Vegana</option>
-                                <option value="vegetarian">Vegetariana</option>
-                                <option value="wheat-free">Sin trigo</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="filter-button-container">
-                        <button class="filter-button" id="mealType-button">Tipo de comida</button>
-                        <div class="filter-options" id="mealType-options">
-                            <select class="form-control" id="mealType" name="mealType">
-                                <option value="Breakfast">Desayuno</option>
-                                <option value="Dinner">Cena</option>
-                                <option value="Lunch">Almuerzo</option>
-                                <option value="Snack">Merienda</option>
-                                <option value="Teatime">Hora del té</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="filter-button-container">
-                        <button class="filter-button" id="time-button">Tiempo</button>
-                        <div class="filter-options" id="time-options">
-                            <input type="text" class="form-control" id="time" name="time" placeholder="Ejemplo: 30">
+                    <button class="filter-button" id="toggle-filters-button">Filtros</button>
+                    <div class="filter-container">
+                        <div class="filter-buttons-inner">
+                            <div class="filter-button-container">
+                                <button class="filter-button" id="diet-button">Dieta</button>
+                                <div class="filter-options" id="diet-options">
+                                    <select class="form-control" id="diet" name="diet">
+                                        <option value="balanced">Equilibrada</option>
+                                        <option value="high-fiber">Alta en fibra</option>
+                                        <option value="high-protein">Alta en proteínas</option>
+                                        <option value="low-carb">Baja en carbohidratos</option>
+                                        <option value="low-fat">Baja en grasas</option>
+                                        <option value="low-sodium">Baja en sodio</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-button-container">
+                                <button class="filter-button" id="health-button">Salud</button>
+                                <div class="filter-options" id="health-options">
+                                    <select class="form-control" id="health" name="health">
+                                        <option value="alcohol-cocktail">Cóctel con alcohol</option>
+                                        <option value="alcohol-free">Sin alcohol</option>
+                                        <!-- Otras opciones... -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-button-container">
+                                <button class="filter-button" id="mealType-button">Tipo de comida</button>
+                                <div class="filter-options" id="mealType-options">
+                                    <select class="form-control" id="mealType" name="mealType">
+                                        <option value="Breakfast">Desayuno</option>
+                                        <option value="Dinner">Cena</option>
+                                        <!-- Otras opciones... -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-button-container">
+                                <button class="filter-button" id="time-button">Tiempo</button>
+                                <div class="filter-options" id="time-options">
+                                    <input type="text" class="form-control" id="time" name="time" placeholder="Ejemplo: 30">
+                                </div>
+                            </div>
+                            <div class="filter-buttons-bottom">
+                                <div class="range-values hidden" id="calories-values">
+                                    <span id="calories-min">0 calorías</span>
+                                    <span id="calories-max">2000 calorías</span>
+                                </div>
+                                <div class="range-slider hidden" id="calories-slider"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- Slider de calorías -->
                 <div class="filter-buttons-bottom">
                     <div class="range-values">

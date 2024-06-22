@@ -3,42 +3,54 @@
 {% load static %}
 
 {% block content %}
-  
-  <!-- Heading -->
-   <section class="page-section clearfix">
-    <div class="container">
-      <div class="intro">
-        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="/img/principal.jpg" alt="">
-        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-          <h2 class="section-heading mb-4" >
-            <span class="section-heading-upper">Puntualidad</span>
-            <span class="section-heading-lower">El mejor stock</span>
-          </h2>
-          <p class="mb-3">En la puertra de tu casa en menos de 48 h con el envío normal. En menos de 24 h con el envío express.
-          </p>
-         
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="container">
+    <div class="vh-5"></div>
 
-
-  
-    <!-- Message -->
-    <section class="page-section cta">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <div class="cta-inner text-center rounded">
-              <h2 class="section-heading mb-4">
-                <span class="section-heading-upper">Compromiso total</span>
-                <span class="section-heading-lower">Garantizado</span>
-              </h2>
-              <p class="mb-0">Con más de 75 años de experiencia a nuestras espaldas, desde Gestión de Pedidos tenemos los conocimientos y herramientas necesarios para llevar cualquier objeto a la puerta de su casa con puntualidad y profesionalidad.</p>
+    <!-- Sección Buscador -->
+    <div class="text-center d-flex flex-column justify-content-center align-items-center vh-30 welcome-section bg-light mt-5">
+        <div class="card bg-semitransparent">
+            <div class="card card-body">
+                <h1>Bienvenido a IMCOCINA</h1>
+                <p>Encuentra recetas deliciosas y saludables con los ingredientes que tienes en casa.</p>
+                <div class="input-group mb-3 justify-content-center">
+                    <form method="GET" action="{% url 'recetas:BuscarRecetas' %}">
+                        <input type="text" name="ingredientes" class="form-control col-md-6" placeholder="Busca por ingredientes...">
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="submit">Buscar Recetas</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 
-    {% endblock %}
+<div class="vh-5"></div>
+
+<!-- Sección de Contenido Principal -->
+<div class="row mt-4 d-flex">
+    <!-- Sección Recetas Populares (Carrito) -->
+    <div class="col-md-8 d-flex flex-column">
+        <section class="carrito card mb-4 rounded bg-white-transparent flex-grow-1">
+            <div class="card-body text-center">
+                <h5 class="card-title">Recetas Encontradas</h5>
+                <div class="row justify-content-center">
+                    {% for receta in recetas %}
+                        <div class="col-md-4 d-flex">
+                            <div class="recipe card mb-3 flex-fill">
+                                <img src="{{ receta.imagen }}" class="card-img-top" alt="{{ receta.nombre }}">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-titulo">{{ receta.nombre }}</h5>
+                                    <a href="{{ receta.link }}" target="_blank" class="btn btn-primary mt-auto">Ver receta</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</section>
+
+{% endblock %}

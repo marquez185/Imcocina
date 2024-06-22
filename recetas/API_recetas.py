@@ -66,7 +66,65 @@ def buscar_recetas_aleatorias(num_recetas=7):
         print(f"Error: {response.status_code}")
         return None
 
-# Ejemplo de uso
+def buscar_recetas_ingredientes(ingredientes, num_recetas=5):
+    url = 'https://api.edamam.com/api/recipes/v2'
+    query = ','.join(ingredientes.split(','))  # Separar los ingredientes por comas
+    
+    params = {
+        'type': 'public',
+        'q': query,
+        'app_id': app_id,
+        'app_key': app_key,
+        'random': 'true',
+        'to': num_recetas
+    }
+
+    response = requests.get(url, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        recetas = []
+        for hit in data['hits'][:num_recetas]:
+            receta = hit['recipe']
+            recetas.append({
+                'nombre': receta['label'],
+                'imagen': receta['image'],
+                'link': receta['url']
+            })
+        return recetas
+    else:
+        print(f"Error: {response.status_code}")
+        return None
+    url = 'https://api.edamam.com/api/recipes/v2'
+    query = ','.join(ingredientes.split(','))  # Separar los ingredientes por comas
+    
+    params = {
+        'type': 'public',
+        'q': query,
+        'app_id': app_id,
+        'app_key': app_key,
+        'random': 'true',
+        'to': num_recetas
+    }
+
+    response = requests.get(url, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        recetas = []
+        for hit in data['hits'][:num_recetas]:
+            receta = hit['recipe']
+            recetas.append({
+                'nombre': receta['label'],
+                'imagen': receta['image'],
+                'link': receta['url']
+            })
+        return recetas
+    else:
+        print(f"Error: {response.status_code}")
+        return None
+
+'''# Ejemplo de uso
 query = 'chicken'
 recetas = buscar_recetas(query)
 
@@ -81,6 +139,6 @@ if recetas:
         print(f"Ingredientes: {', '.join(receta['ingredientLines'])}")
         print("\n")
 else:
-    print("No se encontraron recetas.")
+    print("No se encontraron recetas.")'''
 
 

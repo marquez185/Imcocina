@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from .API_recetas import buscar_recetas_ingredientes
 
 # Create your views here.
 
@@ -9,7 +10,10 @@ def editarRecetas(request):
     return HttpResponse("EditarRecetas")
 
 def buscarRecetas(request):
-    return render(request, "recetas/buscarRecetas.html")
+    ingredientes = request.GET.get('ingredientes', '')
+    recetas = buscar_recetas_ingredientes(ingredientes, num_recetas=10)
+    context = {'recetas': recetas}
+    return render(request, "recetas/buscarRecetas.html", context)
 
 def guardarRecetas(request):
     return HttpResponse("GuardarRecetas")
