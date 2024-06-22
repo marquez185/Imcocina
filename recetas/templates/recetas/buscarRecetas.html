@@ -3,54 +3,48 @@
 {% load static %}
 
 {% block content %}
-<section class="container">
-    <div class="vh-5"></div>
 
-    <!-- Sección Buscador -->
-    <div class="text-center d-flex flex-column justify-content-center align-items-center vh-30 welcome-section bg-light mt-5">
-        <div class="card bg-semitransparent">
-            <div class="card card-body">
-                <h1>Bienvenido a IMCOCINA</h1>
-                <p>Encuentra recetas deliciosas y saludables con los ingredientes que tienes en casa.</p>
-                <div class="input-group mb-3 justify-content-center">
-                    <form method="GET" action="{% url 'recetas:BuscarRecetas' %}">
-                        <input type="text" name="ingredientes" class="form-control col-md-6" placeholder="Busca por ingredientes...">
-                        <div class="input-group-append">
-                            <button class="btn btn-dark" type="submit">Buscar Recetas</button>
-                        </div>
-                    </form>
+  <!-- Search and Recipe List -->
+  <section class="page-section">
+    <div class="container">
+        <div class="content-container text-center mb-4">
+            <h1 class="display-4">Encuentra las mejores recetas</h1>
+            <p class="lead">Recetas a tu gusto, preferencia y dieta</p>
+            <div class="search-bar-container">
+                <div class="input-group mb-3 mx-auto" style="max-width: 600px;">
+                    <input type="text" class="form-control" placeholder="Busca por ingredientes...">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" type="button">Buscar Recetas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Sections -->
+        <div class="content-container text-center mb-4">
+            <h1 class="display-4">Recetas Populares</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <img src="{% static 'logicaNegocio/img/recetas_populares.jpg' %}" alt="Recetas populares" class="info-img">
+                        <h4>Receta 1</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <img src="{% static 'logicaNegocio/img/recetas_populares.jpg' %}" alt="Recetas populares" class="info-img">
+                        <h4>Receta 2</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <img src="{% static 'logicaNegocio/img/recetas_populares.jpg' %}" alt="Recetas populares" class="info-img">
+                        <h4>Receta 3</h4>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
-
-<div class="vh-5"></div>
-
-<!-- Sección de Contenido Principal -->
-<div class="row mt-4 d-flex">
-    <!-- Sección Recetas Populares (Carrito) -->
-    <div class="col-md-8 d-flex flex-column">
-        <section class="carrito card mb-4 rounded bg-white-transparent flex-grow-1">
-            <div class="card-body text-center">
-                <h5 class="card-title">Recetas Encontradas</h5>
-                <div class="row justify-content-center">
-                    {% for receta in recetas %}
-                        <div class="col-md-4 d-flex">
-                            <div class="recipe card mb-3 flex-fill">
-                                <img src="{{ receta.imagen }}" class="card-img-top" alt="{{ receta.nombre }}">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-titulo">{{ receta.nombre }}</h5>
-                                    <a href="{{ receta.link }}" target="_blank" class="btn btn-primary mt-auto">Ver receta</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
-</section>
+  </section>
 
 {% endblock %}

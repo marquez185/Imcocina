@@ -1,0 +1,71 @@
+/* styleReceta.css */
+
+.content-container {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar-container {
+    background-color: #ffffff;
+    border-radius: 0.25rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-bar .form-control {
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+}
+
+.search-bar .btn {
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+.info-box {
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-box .info-img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.info-box h4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.info-box ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.info-box ul li {
+    margin-bottom: 0.5rem;
+}
+
+.info-box ul li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.info-box ul li a:hover {
+    text-decoration: underline;
+}
