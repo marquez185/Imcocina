@@ -4,8 +4,8 @@
 
 {% block content %}
 <section class="container">
-    <div class="vh-5">
-    </div>
+    <div class="vh-5"></div>
+
     <!-- Sección Buscador -->
     <div class="text-center d-flex flex-column justify-content-center align-items-center vh-30 welcome-section bg-light mt-5">
         <div class="card bg-semitransparent">
@@ -111,13 +111,13 @@
         </div>
     </section>
 
-    <div class="vh-5">
-    </div>
+    <div class="vh-5"></div>
 
-    <!-- Sección Recetas Populares (Carrito) -->
-    <div class="row mt-4">
-        <div class="col-md-8">
-            <section class="carrito card mb-4 rounded bg-white-transparent">
+    <!-- Sección de Contenido Principal -->
+    <div class="row mt-4 d-flex">
+        <!-- Sección Recetas Populares (Carrito) -->
+        <div class="col-md-8 d-flex flex-column">
+            <section class="carrito card mb-4 rounded bg-white-transparent flex-grow-1">
                 <div class="card-body text-center">
                     <h5 class="card-title">Recetas Populares</h5>
                     <div class="row justify-content-center">
@@ -137,18 +137,18 @@
             </section>
         </div>
 
-        <!-- Título de la Sección de Información Adicional -->
-        <div class="col-md-4">
-            <section class="additional-info-title card mb-4 rounded bg-white-transparent">
+        <!-- Sección de Información Adicional -->
+        <div class="col-md-4 d-flex flex-column">
+            <section class="additional-info-title card mb-4 rounded bg-white-transparent flex-grow-1">
                 <div class="card-body text-center">
                     <h3 class="card-title">Información Adicional</h3>
                     <div class="d-flex flex-column justify-content-center mt-3">
-                        <div>
-                            <img src="{% static 'logicaNegocio/img/noticias.jpg' %}" alt="Información Adicional" class="img-fluid mb-3">
+                        <div class="info-item mb-3">
+                            <img src="{% static 'logicaNegocio/img/desperdicio.jpg' %}" alt="Desperdicio" class="img-fluid mb-2">
                             <a href="{% url 'ConsejosDesperdicio' %}" class="btn btn-info mb-2">Consejos de Desperdicio</a>
                         </div>
-                        <div>
-                            <img src="{% static 'logicaNegocio/img/informacion_adicional.jpg' %}" alt="Información Adicional" class="img-fluid mb-3">
+                        <div class="info-item">
+                            <img src="{% static 'logicaNegocio/img/noticias.jpg' %}" alt="Noticias" class="img-fluid mb-2">
                             <a href="{% url 'Noticias' %}" class="btn btn-info mb-2">Noticias</a>
                         </div>
                     </div>

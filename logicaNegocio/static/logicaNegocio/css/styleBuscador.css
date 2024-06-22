@@ -133,4 +133,9 @@
     width: 100%;
 }
 
-
+/*RESPONSIVO*/
+@media (max-width: 450px) {
+    .welcome-section {
+        margin-top: 120px; /* Aumentar el valor para evitar el solapamiento */
+    }
+}
