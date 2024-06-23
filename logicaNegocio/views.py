@@ -85,3 +85,6 @@ def desperdicio(request):
 
 def nosotros(request):
     return render(request, "logicaNegocio/nosotros.html", {'username': nombre_usuario(request)})
+
+def politicas_privacidad(request):
+    return render(request, 'logicaNegocio/politicas_privacidad.html')
