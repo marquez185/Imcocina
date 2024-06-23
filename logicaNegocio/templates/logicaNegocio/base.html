@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="{% static 'logicaNegocio/css/styleNosotros.css' %}">
   <link rel="stylesheet" href="{% static 'logicaNegocio/css/styleNoticias.css' %}">
   <link rel="stylesheet" href="{% static 'logicaNegocio/css/stylePoliticas.css' %}">
+  <link rel="stylesheet" href="{% static 'logicaNegocio/css/styleTerminos.css' %}">
 </head>
 
 <body>
@@ -76,12 +77,14 @@
     </main>
 
     <!-- Footer -->
- <footer class="text-white text-center py-3 mt-auto">
+
+  <footer class="text-white text-center py-3 mt-auto">
   <p>© 2024 IMCOCINA</p>
   <div>
-      <a href="#" class="text-white">Términos de Uso</a> | <a href="{% url 'politicas_privacidad' %}" class="text-white">Política de Privacidad</a>
+      <a href="{% url 'terminos_uso' %}" class="text-white">Términos de Uso</a> | <a href="{% url 'politicas_privacidad' %}" class="text-white">Política de Privacidad</a>
   </div>
-</footer>
+  </footer>
+
 
   </div>
 

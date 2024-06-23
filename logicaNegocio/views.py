@@ -88,3 +88,6 @@ def nosotros(request):
 
 def politicas_privacidad(request):
     return render(request, 'logicaNegocio/politicas_privacidad.html')
+
+def terminos_uso(request):
+    return render(request, 'logicaNegocio/terminos_uso.html')
