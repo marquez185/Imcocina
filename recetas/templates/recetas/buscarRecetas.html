@@ -102,6 +102,12 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-titulo">{{ receta.nombre }}</h5>
                         <a href="{{ receta.link }}" target="_blank" class="btn btn-primary mt-auto">Ver receta</a>
+                        {% if user.is_authenticated %}
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input favorito-checkbox" data-receta-id="{{ receta.id }}" data-receta-titulo="{{ receta.nombre }}" data-receta-imagen="{{ receta.imagen }}" {% if receta.id in favoritos_ids %}checked{% endif %}>
+                            <label class="form-check-label">Favorito</label>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

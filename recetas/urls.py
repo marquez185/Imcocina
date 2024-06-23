@@ -10,4 +10,5 @@ urlpatterns = [
     path('guardarRecetas/', views.guardarRecetas, name="GuardarRecetas"),
     path('filtrarRecetas/', views.filtrarRecetas, name="FiltrarRecetas"),
     path('verNutricional/', views.verNutricional, name="VerNutricional"),
+    path('toggle_favorito/', views.toggle_favorito, name="ToggleFavorito"),  # Agregar esta línea
 ]
