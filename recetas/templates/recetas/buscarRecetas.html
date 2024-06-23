@@ -5,46 +5,109 @@
 {% block content %}
 
   <!-- Search and Recipe List -->
-  <section class="page-section">
-    <div class="container">
-        <div class="content-container text-center mb-4">
-            <h1 class="display-4">Encuentra las mejores recetas</h1>
-            <p class="lead">Recetas a tu gusto, preferencia y dieta</p>
-            <div class="search-bar-container">
-                <div class="input-group mb-3 mx-auto" style="max-width: 600px;">
-                    <input type="text" class="form-control" placeholder="Busca por ingredientes...">
+  <section class="container">
+    <div class="vh-5"></div>
+
+    <!-- Sección Buscador -->
+    <div class="text-center d-flex flex-column justify-content-center align-items-center vh-30 welcome-section bg-light mt-5">
+        <div class="card bg-semitransparent">
+            <div class="card card-body">
+                <h1>Bienvenido a IMCOCINA</h1>
+                <p>Encuentra recetas deliciosas y saludables con los ingredientes que tienes en casa.</p>
+                <form method="GET" action="{% url 'recetas:BuscarRecetas' %}" class="input-group mb-3 justify-content-center">
+                    <input type="text" name="ingredientes" class="form-control col-md-6" placeholder="Busca por ingredientes...">
                     <div class="input-group-append">
-                        <button class="btn btn-dark" type="button">Buscar Recetas</button>
+                        <button class="btn btn-dark" type="submit">Buscar Recetas</button>
                     </div>
+                </form>
+
+                <!-- Botones de filtros de búsqueda en disposición horizontal -->
+                <div class="filter-buttons">
+                    <button class="filter-button" id="toggle-filters-button">Filtros</button>
+                    <div class="filter-container">
+                        <div class="filter-buttons-inner">
+                            <div class="filter-button-container">
+                                <button class="filter-button" id="diet-button">Dieta</button>
+                                <div class="filter-options" id="diet-options">
+                                    <select class="form-control" id="diet" name="diet">
+                                        <option value="balanced">Equilibrada</option>
+                                        <option value="high-fiber">Alta en fibra</option>
+                                        <option value="high-protein">Alta en proteínas</option>
+                                        <option value="low-carb">Baja en carbohidratos</option>
+                                        <option value="low-fat">Baja en grasas</option>
+                                        <option value="low-sodium">Baja en sodio</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-button-container">
+                                <button class="filter-button" id="health-button">Salud</button>
+                                <div class="filter-options" id="health-options">
+                                    <select class="form-control" id="health" name="health">
+                                        <option value="alcohol-cocktail">Cóctel con alcohol</option>
+                                        <option value="alcohol-free">Sin alcohol</option>
+                                        <!-- Otras opciones... -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-button-container">
+                                <button class="filter-button" id="mealType-button">Tipo de comida</button>
+                                <div class="filter-options" id="mealType-options">
+                                    <select class="form-control" id="mealType" name="mealType">
+                                        <option value="Breakfast">Desayuno</option>
+                                        <option value="Dinner">Cena</option>
+                                        <!-- Otras opciones... -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-button-container">
+                                <button class="filter-button" id="time-button">Tiempo</button>
+                                <div class="filter-options" id="time-options">
+                                    <input type="text" class="form-control" id="time" name="time" placeholder="Ejemplo: 30">
+                                </div>
+                            </div>
+                            <div class="filter-buttons-bottom">
+                                <div class="range-values hidden" id="calories-values">
+                                    <span id="calories-min">0 calorías</span>
+                                    <span id="calories-max">2000 calorías</span>
+                                </div>
+                                <div class="range-slider hidden" id="calories-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slider de calorías -->
+                <div class="filter-buttons-bottom">
+                    <div class="range-values">
+                        <span id="calories-min">0 calorías</span>
+                        <span id="calories-max">2000 calorías</span>
+                    </div>
+                    <div class="range-slider" id="calories-slider"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Additional Sections -->
-        <div class="content-container text-center mb-4">
-            <h1 class="display-4">Recetas Populares</h1>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <img src="{% static 'logicaNegocio/img/recetas_populares.jpg' %}" alt="Recetas populares" class="info-img">
-                        <h4>Receta 1</h4>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <img src="{% static 'logicaNegocio/img/recetas_populares.jpg' %}" alt="Recetas populares" class="info-img">
-                        <h4>Receta 2</h4>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <img src="{% static 'logicaNegocio/img/recetas_populares.jpg' %}" alt="Recetas populares" class="info-img">
-                        <h4>Receta 3</h4>
+    </section>
+
+  <!-- Additional Sections -->
+<section class="page-section">
+    <div class="vh-5"></div>
+    <div class="content-container text-center mb-4">
+        <h1>Recetas Encontradas</h1>
+        <div class="row">
+            {% for receta in recetas %}
+            <div class="col-md-4 d-flex">
+                <div class="recipe card mb-3 flex-fill info-box">
+                    <img src="{{ receta.imagen }}" class="card-img-top info-img" alt="{{ receta.nombre }}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-titulo">{{ receta.nombre }}</h5>
+                        <a href="{{ receta.link }}" target="_blank" class="btn btn-primary mt-auto">Ver receta</a>
                     </div>
                 </div>
             </div>
+        {% endfor %}
         </div>
     </div>
-  </section>
+</section>
 
 {% endblock %}

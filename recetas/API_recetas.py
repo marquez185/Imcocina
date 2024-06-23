@@ -95,34 +95,6 @@ def buscar_recetas_ingredientes(ingredientes, num_recetas=5):
     else:
         print(f"Error: {response.status_code}")
         return None
-    url = 'https://api.edamam.com/api/recipes/v2'
-    query = ','.join(ingredientes.split(','))  # Separar los ingredientes por comas
-    
-    params = {
-        'type': 'public',
-        'q': query,
-        'app_id': app_id,
-        'app_key': app_key,
-        'random': 'true',
-        'to': num_recetas
-    }
-
-    response = requests.get(url, params=params)
-
-    if response.status_code == 200:
-        data = response.json()
-        recetas = []
-        for hit in data['hits'][:num_recetas]:
-            receta = hit['recipe']
-            recetas.append({
-                'nombre': receta['label'],
-                'imagen': receta['image'],
-                'link': receta['url']
-            })
-        return recetas
-    else:
-        print(f"Error: {response.status_code}")
-        return None
 
 '''# Ejemplo de uso
 query = 'chicken'
