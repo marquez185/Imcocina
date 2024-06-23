@@ -1,0 +1,30 @@
+{% extends "logicaNegocio/base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Crear Nueva Receta</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="titulo">Título</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" required>
+    </div>
+    <div class="form-group">
+        <label for="ingredientes">Ingredientes</label>
+        <textarea class="form-control" id="ingredientes" name="ingredientes" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="pasos">Pasos</label>
+        <textarea class="form-control" id="pasos" name="pasos" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="calorias">Calorías</label>
+        <input type="number" class="form-control" id="calorias" name="calorias" required>
+    </div>
+    <div class="form-group">
+        <label for="informacion_nutricional">Información Nutricional</label>
+        <textarea class="form-control" id="informacion_nutricional" name="informacion_nutricional" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Crear</button>
+</form>
+{% endblock %}

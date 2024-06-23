@@ -10,5 +10,10 @@ urlpatterns = [
     path('guardarRecetas/', views.guardarRecetas, name="GuardarRecetas"),
     path('filtrarRecetas/', views.filtrarRecetas, name="FiltrarRecetas"),
     path('verNutricional/', views.verNutricional, name="VerNutricional"),
-    path('toggle_favorito/', views.toggle_favorito, name="ToggleFavorito"),  # Agregar esta línea
+    path('toggle_favorito/', views.toggle_favorito, name="ToggleFavorito"),
+    # Rutas CRUD para superusuarios
+    path('crud_recetas/', views.crud_recetas, name="crud_recetas"),
+    path('crear_receta/', views.crear_receta, name="crear_receta"),
+    path('editar_receta/<int:receta_id>/', views.editar_receta, name="editar_receta"),
+    path('eliminar_receta/<int:receta_id>/', views.eliminar_receta, name="eliminar_receta"),
 ]

@@ -36,12 +36,11 @@
                     <div class="btn-container mb-3">
                         <a href="{% url 'usuario:VerRecetasAvaladas' %}" class="btn btn-primary btn-custom">Ver Recetas Avaladas</a>
                     </div>
+                    {% if user.is_superuser %}
                     <div class="btn-container mb-3">
-                        <form method="POST" action="{% url 'usuario:Logout' %}" class="d-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary btn-custom">Cerrar Sesión</button>
-                        </form>
+                        <a href="{% url 'recetas:crud_recetas' %}" class="btn btn-warning btn-custom">Administrar Recetas</a>
                     </div>
+                    {% endif %}
                 </div>
             {% else %}
                 <div class="alert alert-warning">No has iniciado sesión. <a href="{% url 'usuario:Login' %}">Inicia sesión aquí</a>.</div>

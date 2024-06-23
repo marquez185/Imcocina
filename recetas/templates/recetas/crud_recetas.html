@@ -1,0 +1,36 @@
+{% extends "logicaNegocio/base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Gestión de Recetas</h1>
+<a href="{% url 'recetas:crear_receta' %}" class="btn btn-success">Crear Nueva Receta</a>
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Ingredientes</th>
+            <th>Pasos</th>
+            <th>Calorías</th>
+            <th>Información Nutricional</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for receta in recetas %}
+        <tr>
+            <td>{{ receta.id }}</td>
+            <td>{{ receta.titulo }}</td>
+            <td>{{ receta.ingredientes }}</td>
+            <td>{{ receta.pasos }}</td>
+            <td>{{ receta.calorias }}</td>
+            <td>{{ receta.informacion_nutricional }}</td>
+            <td>
+                <a href="{% url 'recetas:editar_receta' receta.id %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'recetas:eliminar_receta' receta.id %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar esta receta?')">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

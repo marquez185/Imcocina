@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from BD.models import Receta, Favoritos  # Importar desde la ubicación correcta
@@ -73,3 +73,54 @@ def filtrarRecetas(request):
     recetas = obtener_recetas(ingredientes, diet, health, cuisineType, mealType, dishType, calories_min, calories_max, time)
     
     return render(request, 'recetas/filtrarRecetas.html', {'recetas': recetas, 'username': nombre_usuario(request)})
+
+# Vistas CRUD para superusuarios
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def crud_recetas(request):
+    recetas = Receta.objects.all()
+    return render(request, 'recetas/crud_recetas.html', {'recetas': recetas})
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def crear_receta(request):
+    if request.method == 'POST':
+        titulo = request.POST['titulo']
+        ingredientes = request.POST['ingredientes']
+        pasos = request.POST['pasos']
+        calorias = request.POST['calorias']
+        informacion_nutricional = request.POST['informacion_nutricional']
+        creador = request.user.username
+
+        Receta.objects.create(
+            titulo=titulo,
+            ingredientes=ingredientes,
+            pasos=pasos,
+            calorias=calorias,
+            informacion_nutricional=informacion_nutricional,
+            usuario=request.user,
+            creador=creador
+        )
+        return redirect('recetas:crud_recetas')
+    return render(request, 'recetas/crear_receta.html')
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def editar_receta(request, receta_id):
+    receta = get_object_or_404(Receta, pk=receta_id)
+    if request.method == 'POST':
+        receta.titulo = request.POST['titulo']
+        receta.ingredientes = request.POST['ingredientes']
+        receta.pasos = request.POST['pasos']
+        receta.calorias = request.POST['calorias']
+        receta.informacion_nutricional = request.POST['informacion_nutricional']
+        receta.save()
+        return redirect('recetas:crud_recetas')
+    return render(request, 'recetas/editar_receta.html', {'receta': receta})
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def eliminar_receta(request, receta_id):
+    receta = get_object_or_404(Receta, pk=receta_id)
+    receta.delete()
+    return redirect('recetas:crud_recetas')
