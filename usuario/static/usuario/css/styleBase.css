@@ -158,19 +158,20 @@ footer {
 
 /* Estilos personalizados para los botones redondeados */
 .btn-custom {
-    border-radius: 50px;
-    background-color: #827f7f;
-    color: black;
-    border: 1px solid #797676;
+    border-radius: 25px; /* Ajusta el radio de borde para que los botones sean más redondeados */
+    background-color: #6c757d; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: 1px solid #6c757d; /* Borde del botón */
     padding: 10px 20px;
     text-align: center;
     margin: 10px;
     width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones suaves para los cambios de color */
 }
 
 .btn-custom:hover {
-    background-color: #f0f0f0;
-    color: black;
+    background-color: #5a6268; /* Color de fondo al pasar el cursor */
+    color: white; /* Color del texto al pasar el cursor */
 }
 
 .d-grid {

@@ -3,15 +3,6 @@
 {% load static %}
 
 {% block content %}
-<div class="position-fixed top-0 end-0 m-3">
-    {% if user.is_authenticated %}
-        <form method="POST" action="{% url 'usuario:Logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
-        </form>
-    {% endif %}
-</div>
-
 <div class="container bf w-75 text-body mt-5 rounded shadow">
     <div class="row align-items-stretch">
         <div class="col ig d-none d-md-block d-lg-block rounded-start">
@@ -36,20 +27,19 @@
                     <p class="form-control">{{ user.email }}</p>
                 </div>
                 <div class="d-grid mb-3">
-                    
                     <div class="btn-container mb-3">
-                        <a href="{% url 'usuario:UpdatePerfil' %}" class="btn btn-primary">Actualizar Perfil</a>
+                        <a href="{% url 'usuario:UpdatePerfil' %}" class="btn btn-primary btn-custom">Actualizar Perfil</a>
                     </div>
                     <div class="btn-container mb-3">
-                        <a href="{% url 'usuario:Favoritas' %}" class="btn btn-secondary">Mis recetas favoritas</a>
+                        <a href="{% url 'usuario:Favoritas' %}" class="btn btn-secondary btn-custom">Mis recetas favoritas</a>
                     </div>
                     <div class="btn-container mb-3">
-                        <a href="{% url 'usuario:VerRecetasAvaladas' %}" class="btn btn-primary">Ver Recetas Avaladas</a>
+                        <a href="{% url 'usuario:VerRecetasAvaladas' %}" class="btn btn-primary btn-custom">Ver Recetas Avaladas</a>
                     </div>
                     <div class="btn-container mb-3">
                         <form method="POST" action="{% url 'usuario:Logout' %}" class="d-inline">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
+                            <button type="submit" class="btn btn-primary btn-custom">Cerrar Sesión</button>
                         </form>
                     </div>
                 </div>
