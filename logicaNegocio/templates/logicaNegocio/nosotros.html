@@ -4,9 +4,37 @@
 
 {% block content %}
 
-    <!-- Título de la Sección Nosotros -->
-    <section class="additional-info-title mt-5">
-        <h3 class="text-center">IMCOCINA</h3>
-    </section>
+<!-- Sección Nosotros -->
+<section class="nosotros-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4">Nosotros</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="header-image-container">
+                    <img src="{% static 'logicaNegocio/img/nosotros.jpg' %}" alt="Imagen Nosotros" class="img-fluid header-image">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="media">
+                    <div class="media-body">
+                        <h2 class="section-heading">¿Quiénes somos?</h2>
+                        <p>Somos un grupo de estudiantes de 6to semestre de la carrera de Ingeniería en Sistemas Computacionales en la Escuela Superior De Cómputo.</p>
+                        <p>Nuestro objetivo es promover hábitos alimenticios saludables a través de recetas fáciles y accesibles, fomentando el uso de ingredientes frescos 
+                           y naturales.          
+                           Creemos que una buena alimentación es clave para una vida saludable y queremos compartir nuestro conocimiento y pasión por la comida 
+                           sana con la comunidad.</p>
+                        <p>A través de este proyecto, esperamos inspirar a otros a adoptar una dieta equilibrada y a disfrutar del proceso de cocinar sus propias comidas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
