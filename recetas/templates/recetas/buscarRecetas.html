@@ -4,6 +4,12 @@
 
 {% block content %}
 
+<head>
+    ...
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    ...
+</head>
+
 <!-- Search and Recipe List -->
 <section class="container">
     <div class="vh-5"></div>
