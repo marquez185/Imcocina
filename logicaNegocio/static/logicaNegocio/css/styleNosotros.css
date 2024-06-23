@@ -1,0 +1,46 @@
+/* styleNosotros.css */
+
+.nosotros-section {
+    background-color: #fff;
+    padding: 3rem 0;
+}
+
+.nosotros-section .container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.nosotros-section h1.display-4 {
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #003366;
+}
+
+.header-image-container {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 200px; /* Ajusta este valor para cambiar la altura de la imagen */
+}
+
+.header-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.nosotros-section .section-heading {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #003366;
+}
+
+.nosotros-section p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    text-align: justify;
+}
+
