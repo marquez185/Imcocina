@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from BD.models import Receta, Favoritos  # Importar desde la ubicación correcta
-from recetas.API_recetas import buscar_recetas_ingredientes
+from recetas.API_recetas import buscar_recetas_ingredientes, obtener_recetas
 import json
 
 # Create your views here.
@@ -54,8 +54,22 @@ def toggle_favorito(request):
 def guardarRecetas(request):
     return HttpResponse("GuardarRecetas")
 
-def filtrarRecetas(request):
-    return HttpResponse("FiltrarRecetas")
-
 def verNutricional(request):
     return HttpResponse("VerNutricional")
+
+def filtrarRecetas(request):
+    # Obtener los parámetros de búsqueda
+    ingredientes = request.GET.get('ingredientes', '')
+    diet = request.GET.get('diet', '')
+    health = request.GET.get('health', '')
+    cuisineType = request.GET.get('cuisineType', '')
+    mealType = request.GET.get('mealType', '')
+    dishType = request.GET.get('dishType', '')
+    calories_min = request.GET.get('calories_min', '')
+    calories_max = request.GET.get('calories_max', '')
+    time = request.GET.get('time', '')
+
+    # Llamar a la función que obtiene las recetas de la API
+    recetas = obtener_recetas(ingredientes, diet, health, cuisineType, mealType, dishType, calories_min, calories_max, time)
+    
+    return render(request, 'recetas/filtrarRecetas.html', {'recetas': recetas})

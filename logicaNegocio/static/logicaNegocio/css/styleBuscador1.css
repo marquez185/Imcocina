@@ -46,7 +46,6 @@
     width: 400px; /* Ajusta el ancho del slider */
     margin-top: 10px;
     position: relative;
-    margin-bottom: 20px; /* Agrega margen inferior para separar de los botones */
 }
 
 .filter-button.active {
@@ -86,8 +85,9 @@
     display: flex;
     justify-content: space-between;
     width: 400px; /* Asegura que los valores se alineen con el slider */
+    margin-bottom: 10px; /* Ajusta el espacio entre los valores y el slider */
     position: relative;
-    top: -20px; /* Ajusta la posición vertical de los valores */
+    top: -10px; /* Ajusta la posición vertical de los valores */
     color: black; /* Cambia el color del texto de las calorías a negro */
 }
 
@@ -118,13 +118,6 @@
 
 /* Estilos para la disposición horizontal de los botones */
 .filter-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.filter-calories {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -172,4 +165,3 @@
 .hidden {
     display: none;
 }
-

@@ -6,36 +6,72 @@ app_id = '47feccff'
 app_key = '8a0789f66cca1de26802c29469689e28'
 
 # Define la función para buscar recetas
-def buscar_recetas(query):
-    url = 'https://api.edamam.com/api/recipes/v2'
-    
-    # Parámetros de consulta
+def obtener_recetas(ingredientes, diet, health, cuisineType, mealType, dishType, calories_min, calories_max, time):
+    url = "https://api.edamam.com/search"
     params = {
-        'type': 'public',  # Tipo de receta (public, user, any)
-        'q': query,  # Texto de consulta
-        'app_id': app_id,
-        'app_key': app_key,
-        'diet': ['low-carb'],  # Opcional: etiquetas de dieta
-        'health': ['gluten-free'],  # Opcional: etiquetas de salud
-        'cuisineType': ['Mexican'],  # Opcional: tipo de cocina
-        'mealType': ['Dinner'],  # Opcional: tipo de comida
-        'dishType': ['Main course'],  # Opcional: tipo de plato
-        'calories': '100-500',  # Opcional: rango de calorías
-        'time': '1-60',  # Opcional: rango de tiempo en minutos
-        'random': 'false'  # Opcional: seleccionar recetas aleatorias
+        'q': ingredientes,
+        'app_id': app_id,  # Reemplaza con tu app_id
+        'app_key': app_key,  # Reemplaza con tu app_key
     }
+
+    # Añadir parámetros opcionales si no están vacíos y son válidos
+    if diet in ['balanced', 'high-fiber', 'high-protein', 'low-carb', 'low-fat', 'low-sodium']:
+        params['diet'] = diet
+    if health in ['alcohol-cocktail', 'alcohol-free', 'celery-free', 'crustacean-free', 'dairy-free', 'DASH', 
+                  'egg-free', 'fish-free', 'fodmap-free', 'gluten-free', 'immuno-supportive', 'keto-friendly', 
+                  'kidney-friendly', 'kosher', 'low-fat-abs', 'low-potassium', 'low-sugar', 'lupine-free', 
+                  'Mediterranean', 'mollusk-free', 'mustard-free', 'no-oil-added', 'paleo', 'peanut-free', 
+                  'pescatarian', 'pork-free', 'red-meat-free', 'sesame-free', 'shellfish-free', 'soy-free', 
+                  'sugar-conscious', 'sulfite-free', 'tree-nut-free', 'vegan', 'vegetarian', 'wheat-free']:
+        params['health'] = health
+    if cuisineType:  # Validar según sea necesario
+        params['cuisineType'] = cuisineType
+    if mealType in ['Breakfast', 'Dinner', 'Lunch', 'Snack', 'Teatime']:
+        params['mealType'] = mealType
+    if dishType:  # Validar según sea necesario
+        params['dishType'] = dishType
+    if calories_min and calories_max:
+        params['calories'] = f'{calories_min}-{calories_max}'
+    elif calories_min:
+        params['calories'] = f'{calories_min}+'
+    elif calories_max:
+        params['calories'] = f'{calories_max}'
+    if time:
+        params['time'] = time
+
+    # Print the parameters to ensure they are correct
+    print("Request Parameters:", params)
     
     response = requests.get(url, params=params)
-    
-    # Verificar si la solicitud fue exitosa
-    if response.status_code == 200:
+    try:
         data = response.json()
-        return data
-    else:
-        print(f"Error: {response.status_code}")
-        return None
+    except ValueError:
+        data = {}
     
-def buscar_recetas_aleatorias(num_recetas=7):
+    # Print the API response for debugging
+    # print("API Response:", data)
+
+    # Verificar si la respuesta es una cadena de error
+    if isinstance(data, str):
+        print("Error from API:", data)
+        return []
+    
+
+    # Transformar los datos para que se ajusten al template
+    recetas = []
+    for receta in data.get('hits', []):
+        recetas.append({
+            'nombre': receta['recipe']['label'],
+            'imagen': receta['recipe']['image'],
+            'link': receta['recipe']['url'],
+            'calorias': receta['recipe']['calories'],
+            'nutrientes': receta['recipe']['totalNutrients']
+        })
+        
+    return recetas
+
+# Define la funcion para recetas aleatorias en el index
+def buscar_recetas_aleatorias(num_recetas=8):
     url = 'https://api.edamam.com/api/recipes/v2'
     consultas = ['chicken', 'beef', 'vegetarian', 'pasta', 'dessert']
     query = random.choice(consultas)
@@ -95,6 +131,8 @@ def buscar_recetas_ingredientes(ingredientes, num_recetas=5):
     else:
         print(f"Error: {response.status_code}")
         return None
+
+
 
 '''# Ejemplo de uso
 query = 'chicken'

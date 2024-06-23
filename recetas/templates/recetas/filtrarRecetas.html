@@ -1,9 +1,8 @@
 {% extends "logicaNegocio/base.html" %}
-
 {% load static %}
 
 {% block content %}
-    <section class="container">
+<section class="container">
     <div class="vh-5"></div>
 
     <!-- Sección Buscador -->
@@ -12,21 +11,25 @@
             <div class="card card-body">
                 <h1>Bienvenido a IMCOCINA</h1>
                 <p>Encuentra recetas deliciosas y saludables con los ingredientes que tienes en casa.</p>
-                <form method="GET" action="{% url 'recetas:BuscarRecetas' %}" class="input-group mb-3 justify-content-center">
-                    <input type="text" name="ingredientes" class="form-control col-md-8" placeholder="Busca por ingredientes (papa, tomate, ...)">
-                    <div class="input-group-append">
-                        <button class="btn btn-dark" type="submit">Buscar Recetas</button>
+                <form method="GET" action="{% url 'recetas:FiltrarRecetas' %}">
+                    <div class="input-group mb-3 justify-content-center">
+                        <input type="text" name="ingredientes" class="form-control col-md-6" placeholder="Busca por ingredientes...">
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="submit">Buscar Recetas</button>
+                        </div>
                     </div>
-                </form>
-                <!-- Botones de filtros de búsqueda en disposición horizontal -->
-                <div class="filter-buttons">
-                    <button class="filter-button" id="toggle-filters-button">Filtros</button>
-                    <div class="filter-container">
-                        <div class="filter-buttons-inner">
+                    
+                    <!-- Botón para mostrar/ocultar filtros -->
+                    <button type="button" id="toggle-filters-button" class="filter-button">Mostrar/Ocultar Filtros</button>
+                    
+                    <!-- Filtros -->
+                    <div class="filter-container" style="display: none;">
+                        <div class="filter-buttons">
                             <div class="filter-button-container">
-                                <button class="filter-button" id="diet-button">Dieta</button>
-                                <div class="filter-options" id="diet-options">
+                                <button type="button" class="filter-button" id="diet-button">Dieta</button>
+                                <div class="filter-options">
                                     <select class="form-control" id="diet" name="diet">
+                                        <option value="">Seleccionar</option>
                                         <option value="balanced">Equilibrada</option>
                                         <option value="high-fiber">Alta en fibra</option>
                                         <option value="high-protein">Alta en proteínas</option>
@@ -36,10 +39,12 @@
                                     </select>
                                 </div>
                             </div>
+                            
                             <div class="filter-button-container">
-                                <button class="filter-button" id="health-button">Salud</button>
-                                <div class="filter-options" id="health-options">
+                                <button type="button" class="filter-button" id="health-button">Salud</button>
+                                <div class="filter-options">
                                     <select class="form-control" id="health" name="health">
+                                        <option value="">Seleccionar</option>
                                         <option value="alcohol-cocktail">Cóctel con alcohol</option>
                                         <option value="alcohol-free">Sin alcohol</option>
                                         <option value="celery-free">Sin apio</option>
@@ -79,10 +84,12 @@
                                     </select>
                                 </div>
                             </div>
+                            
                             <div class="filter-button-container">
-                                <button class="filter-button" id="mealType-button">Tipo de comida</button>
-                                <div class="filter-options" id="mealType-options">
-                                    <select class="form-control" id="mealType" name="mealType">
+                                <button type="button" class="filter-button" id="dishType-button">Tipo de plato</button>
+                                <div class="filter-options">
+                                    <select class="form-control" id="dishType" name="dishType">
+                                        <option value="">Seleccionar</option>
                                         <option value="Breakfast">Desayuno</option>
                                         <option value="Dinner">Cena</option>
                                         <option value="Lunch">Almuerzo</option>
@@ -91,41 +98,35 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="filter-button-container">
-                                <button class="filter-button" id="time-button">Tiempo</button>
-                                <div class="filter-options" id="time-options">
-                                    <input type="text" class="form-control" id="time" name="time" placeholder="Ejemplo: 30">
-                                </div>
+                                <label for="time" class="filter-button">Tiempo</label>
+                                <input type="text" class="form-control" id="time" name="time" placeholder="Ejemplo: 10-30">
                             </div>
-                            <div class="filter-buttons-bottom">
-                                <div class="range-values hidden" id="calories-values">
+                        </div>
+                        <div class="filter-calories">
+                            <div class="filter-button-container">
+                                <label for="calories" class="filter-button">Calorías</label>
+                                <div id="calories-values" class="range-values">
                                     <span id="calories-min">0 calorías</span>
                                     <span id="calories-max">2000 calorías</span>
                                 </div>
-                                <div class="range-slider hidden" id="calories-slider"></div>
+                                <div id="calories-slider" class="range-slider"></div>
+                                <!-- Campos ocultos para las calorías -->
+                                <input type="hidden" id="calories-min-input" name="calories_min">
+                                <input type="hidden" id="calories-max-input" name="calories_max">
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Slider de calorías -->
-                <div class="filter-buttons-bottom">
-                    <div class="range-values">
-                        <span id="calories-min">0 calorías</span>
-                        <span id="calories-max">2000 calorías</span>
-                    </div>
-                    <div class="range-slider" id="calories-slider"></div>
-                </div>
+                </form>
             </div>
         </div>
-    </section>
-
+    </div>
+    
+    <!-- Resultados de búsqueda -->
     <div class="vh-5"></div>
-
-    <!-- Sección de Contenido Principal -->
     <div class="row mt-4 d-flex">
-        <!-- Sección Recetas Populares (Carrito) -->
-        <div class="col-md-8 d-flex flex-column">
+        <div class="col-md-12 d-flex flex-column">
             <section class="carrito card mb-4 rounded bg-white-transparent flex-grow-1">
                 <div class="card-body text-center">
                     <h5 class="card-title">Recetas Populares</h5>
@@ -136,30 +137,22 @@
                                     <img src="{{ receta.imagen }}" class="card-img-top" alt="{{ receta.nombre }}">
                                     <div class="card-body d-flex flex-column">
                                         <h5 class="card-titulo">{{ receta.nombre }}</h5>
+                                        <p>Calorías: {{ receta.calorias|floatformat:0 }}</p>
+                                        <p>Información Nutricional:</p>
+                                        <ul>
+                                            {% if receta.nutrientes %}
+                                                {% for key, value in receta.nutrientes.items %}
+                                                    <li>{{ key }}: {{ value.quantity|floatformat:2 }} {{ value.unit }}</li>
+                                                {% endfor %}
+                                            {% else %}
+                                                <li>Información no disponible</li>
+                                            {% endif %}
+                                        </ul>
                                         <a href="{{ receta.link }}" target="_blank" class="btn btn-primary mt-auto">Ver receta</a>
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Sección de Información Adicional -->
-        <div class="col-md-4 d-flex flex-column">
-            <section class="additional-info-title card mb-4 rounded bg-white-transparent flex-grow-1">
-                <div class="card-body text-center">
-                    <h3 class="card-title">Información Adicional</h3>
-                    <div class="d-flex flex-column justify-content-center mt-3">
-                        <div class="info-item mb-3">
-                            <img src="{% static 'logicaNegocio/img/desperdicio.jpg' %}" alt="Desperdicio" class="img-fluid mb-2">
-                            <a href="{% url 'ConsejosDesperdicio' %}" class="btn btn-info mb-2">Consejos de Desperdicio</a>
-                        </div>
-                        <div class="info-item">
-                            <img src="{% static 'logicaNegocio/img/noticias.jpg' %}" alt="Noticias" class="img-fluid mb-2">
-                            <a href="{% url 'Noticias' %}" class="btn btn-info mb-2">Noticias</a>
-                        </div>
                     </div>
                 </div>
             </section>
