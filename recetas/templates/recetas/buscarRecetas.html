@@ -98,7 +98,7 @@
             {% for receta in recetas %}
             <div class="col-md-4 d-flex">
                 <div class="recipe card mb-3 flex-fill info-box">
-                    <img src="{{ receta.imagen }}" class="card-img-top info-img" alt="{{ receta.nombre }}">
+                    <img src="{{ receta.imagen }}" class="card-img-top info-img" style="width: 500px; height: 300px; object-fit: cover;" alt="{{ receta.nombre }}">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-titulo">{{ receta.nombre }}</h5>
                         <a href="{{ receta.link }}" target="_blank" class="btn btn-primary mt-auto">Ver receta</a>
