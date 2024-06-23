@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from BD.models import Receta, Favoritos  # Importar desde la ubicación correcta
-from .API_recetas import buscar_recetas_ingredientes
+from recetas.API_recetas import buscar_recetas_ingredientes
 import json
 
 # Create your views here.
@@ -28,18 +28,19 @@ def toggle_favorito(request):
         receta_id = data.get('receta_id')
         receta_titulo = data.get('receta_titulo')
         receta_imagen = data.get('receta_imagen')
+        receta_url = data.get('receta_url')  # Obtener la URL de la receta
         is_checked = data.get('is_checked')
 
         if is_checked:
             Favoritos.objects.create(
                 usuario=request.user,
                 titulo=receta_titulo,
-                url_id_receta=receta_id,
+                url_id_receta=receta_url,  # Guardar la URL de la receta
                 img=receta_imagen,
             )
             message = "Receta añadida a favoritos"
         else:
-            Favoritos.objects.filter(usuario=request.user, url_id_receta=receta_id).delete()
+            Favoritos.objects.filter(usuario=request.user, url_id_receta=receta_url).delete()
             message = "Receta eliminada de favoritos"
 
         return JsonResponse({'message': message})

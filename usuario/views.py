@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
+from BD.models import Favoritos
 import re
 
 def validar_contrasena(contrasena):
@@ -207,3 +208,14 @@ def updatePerfil(request):
         return redirect('usuario:Perfil')
 
     return render(request, 'usuario/updatePerfil.html')
+
+@login_required
+def recetas_favoritas(request):
+    favoritas = Favoritos.objects.filter(usuario=request.user)
+    context = {'favoritas': favoritas}
+    return render(request, "usuario/recetas_favoritas.html", context)
+
+@login_required
+def ver_recetas_avaladas(request):
+    # Recetas Avaladas
+    return render(request, 'usuario/VerRecetasAvaladas.html')

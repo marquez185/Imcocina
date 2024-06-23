@@ -4,8 +4,8 @@
 
 {% block content %}
 
-  <!-- Search and Recipe List -->
-  <section class="container">
+<!-- Search and Recipe List -->
+<section class="container">
     <div class="vh-5"></div>
 
     <!-- Sección Buscador -->
@@ -89,7 +89,7 @@
 
     </section>
 
-  <!-- Additional Sections -->
+<!-- Additional Sections -->
 <section class="page-section">
     <div class="vh-5"></div>
     <div class="content-container text-center mb-4">
@@ -103,10 +103,12 @@
                         <h5 class="card-titulo">{{ receta.nombre }}</h5>
                         <a href="{{ receta.link }}" target="_blank" class="btn btn-primary mt-auto">Ver receta</a>
                         {% if user.is_authenticated %}
-                        <div class="form-check mt-2">
-                            <input type="checkbox" class="form-check-input favorito-checkbox" data-receta-id="{{ receta.id }}" data-receta-titulo="{{ receta.nombre }}" data-receta-imagen="{{ receta.imagen }}" {% if receta.id in favoritos_ids %}checked{% endif %}>
-                            <label class="form-check-label">Favorito</label>
-                        </div>
+                        <form class="fav-form" data-receta-id="{{ receta.link }}" data-receta-titulo="{{ receta.nombre }}" data-receta-imagen="{{ receta.imagen }}">
+                            <div class="form-check mt-2">
+                                <input type="checkbox" class="form-check-input favorito-checkbox" {% if receta.link in favoritos_ids %}checked{% endif %}>
+                                <label class="form-check-label">Favorito</label>
+                            </div>
+                        </form>
                         {% endif %}
                     </div>
                 </div>
@@ -115,5 +117,42 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const forms = document.querySelectorAll(".fav-form");
+    forms.forEach(form => {
+        const checkbox = form.querySelector(".favorito-checkbox");
+        checkbox.addEventListener("change", function() {
+            const recetaId = form.getAttribute("data-receta-id");
+            const recetaTitulo = form.getAttribute("data-receta-titulo");
+            const recetaImagen = form.getAttribute("data-receta-imagen");
+            const isChecked = checkbox.checked;
+
+            fetch("{% url 'recetas:ToggleFavorito' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({
+                    receta_id: recetaId,
+                    receta_titulo: recetaTitulo,
+                    receta_imagen: recetaImagen,
+                    receta_url: recetaId,  // Incluir la URL de la receta
+                    is_checked: isChecked
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    });
+});
+</script>
 
 {% endblock %}

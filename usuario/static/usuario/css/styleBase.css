@@ -155,3 +155,42 @@ footer {
 .list-news .news-item {
     margin-bottom: 20px;
 }
+
+/* Estilos personalizados para los botones redondeados */
+.btn-custom {
+    border-radius: 50px;
+    background-color: #827f7f;
+    color: black;
+    border: 1px solid #797676;
+    padding: 10px 20px;
+    text-align: center;
+    margin: 10px;
+    width: 100%;
+}
+
+.btn-custom:hover {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.d-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.d-grid > .btn-container {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+}
+
+@media (max-width: 576px) {
+    .d-grid {
+        flex-direction: column;
+    }
+
+    .d-grid > .btn-container {
+        max-width: 100%;
+    }
+}
