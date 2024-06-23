@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IMCOCINA</title>
+  <title>{% block title %}IMCOCINA{% endblock %}</title>
   
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -36,9 +36,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ml-auto">
-                  <li class="nav-item {% if request.path_info == '/' %}active{% endif %} px-lg-2">
-                      <a class="nav-link text-white" href="{% url 'Index' %}">Inicio</a>
-                  </li>
                   <li class="nav-item nav-item {% if '/buscarRecetas' in request.path %} active {% endif %} px-lg-2">
                       <a class="nav-link text-white" href="{% url 'recetas:BuscarRecetas' %}">Explorar Recetas</a>
                   </li>
@@ -48,9 +45,23 @@
                   <li class="nav-item {% if '/noticias' in request.path %} active {% endif %} px-lg-2">
                     <a class="nav-link text-white" href="{% url 'Noticias' %}">Noticias Nutrición</a>
                   </li>
-                  <li class="nav-item {% if '/perfil' in request.path %} active {% endif %} px-lg-2">
-                    <a class="nav-link text-white" href="{% url 'usuario:Perfil' %}">Perfil</a>
+                  {% if user.is_authenticated %}
+                  <li class="nav-item px-lg-2">
+                      <form action="{% url 'usuario:Perfil' %}" method="get" class="d-inline">
+                          <button type="submit" class="btn btn-link text-white user">
+                              Bienvenido, {{ username }}
+                          </button>
+                      </form>
                   </li>
+                  <form method="POST" action="{% url 'usuario:Logout' %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+                  </form> 
+                  {% else %}
+                  <li class="nav-item px-lg-2">
+                      <a class="nav-link text-white" href="{% url 'usuario:Login' %}" style="text-decoration: none; border: 1px solid white;">Iniciar Sesión</a>
+                  </li>
+                  {% endif %}
               </ul>
           </div>
         </nav>

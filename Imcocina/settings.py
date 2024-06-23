@@ -73,9 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Imcocina.wsgi.application'
 
-LOGOUT_REDIRECT_URL = '/login/'  # O cualquier otra URL a la que quieras redirigir
-
-
+LOGOUT_REDIRECT_URL = '/'  # O cualquier otra URL a la que quieras redirigir
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -129,7 +127,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# settings.py
+# CORREO
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.office365.com'
@@ -137,4 +135,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'wraithjmz@outlook.com'
 EMAIL_HOST_PASSWORD = 'Avicii401!'
-

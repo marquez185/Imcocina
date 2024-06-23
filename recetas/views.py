@@ -7,6 +7,12 @@ from recetas.API_recetas import buscar_recetas_ingredientes
 import json
 
 # Create your views here.
+'''MANEJO DE NOMBRE DE SESION'''
+
+def nombre_usuario(request):
+    if request.user.is_authenticated:
+        return request.user.first_name
+    return None
 
 def agregarRecetas(request):
     return HttpResponse("AgregarRecetas")
@@ -18,7 +24,7 @@ def buscarRecetas(request):
     ingredientes = request.GET.get('ingredientes', '')
     recetas = buscar_recetas_ingredientes(ingredientes, num_recetas=10)
     favoritos_ids = Favoritos.objects.filter(usuario=request.user).values_list('url_id_receta', flat=True) if request.user.is_authenticated else []
-    context = {'recetas': recetas, 'favoritos_ids': favoritos_ids}
+    context = {'recetas': recetas, 'favoritos_ids': favoritos_ids, 'username': nombre_usuario(request)}
     return render(request, "recetas/buscarRecetas.html", context)
 
 @login_required

@@ -51,16 +51,28 @@ def search_tips():
     
     return waste_reduction_results, food_utilization_results
 
+'''MANEJO DE NOMBRE DE SESION'''
+
+def nombre_usuario(request):
+    if request.user.is_authenticated:
+        return request.user.first_name
+    return None
+    
+'''LOGICA DE LAS TEMPLATE'''
 
 def index(request):
     recetas = API.buscar_recetas_aleatorias(num_recetas=5)
-    context = {'recetas': recetas}
+    context = {
+        'recetas': recetas,
+        'username': nombre_usuario(request)  # Llamar a la función correctamente
+    }
     return render(request, "logicaNegocio/index.html", context)
 
 def noticias(request):
     news = fetch_bbc_news()
     return render(request, "logicaNegocio/noticias.html", {
         'news': news,
+        'username': nombre_usuario(request)
     })
 
 def desperdicio(request):
@@ -68,7 +80,8 @@ def desperdicio(request):
     return render(request, "logicaNegocio/desperdicio.html", {
         'waste_reduction_links': waste_reduction_links,
         'food_utilization_links': food_utilization_links,
+        'username': nombre_usuario(request)
     })
 
 def nosotros(request):
-    return render(request, "logicaNegocio/nosotros.html")
+    return render(request, "logicaNegocio/nosotros.html", {'username': nombre_usuario(request)})

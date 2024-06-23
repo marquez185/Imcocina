@@ -32,12 +32,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ml-auto">
-                  <li class="nav-item {% if request.path_info == '/' %}active{% endif %} px-lg-4">
-                      <a class="nav-link text-white" href="{% url 'Index' %}">Inicio</a>
-                  </li>
-                  <li class="nav-item {% if '/nosotros' in request.path %} active {% endif %} px-lg-4">
-                    <a class="nav-link text-white" href="{% url 'Nosotros' %}">Nosotros</a>
+                <li class="nav-item nav-item {% if '/buscarRecetas' in request.path %} active {% endif %} px-lg-2">
+                  <a class="nav-link text-white" href="{% url 'recetas:BuscarRecetas' %}">Explorar Recetas</a>
                 </li>
+                <li class="nav-item {% if '/nosotros' in request.path %} active {% endif %} px-lg-2">
+                  <a class="nav-link text-white" href="{% url 'Nosotros' %}">Nosotros</a>
+                </li>
+                <li class="nav-item {% if '/noticias' in request.path %} active {% endif %} px-lg-2">
+                  <a class="nav-link text-white" href="{% url 'Noticias' %}">Noticias Nutrición</a>
+                </li>
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'usuario:Logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+                </form>
+              {% endif %}
               </ul>
           </div>
         </nav>
