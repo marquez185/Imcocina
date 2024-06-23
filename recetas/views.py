@@ -72,4 +72,4 @@ def filtrarRecetas(request):
     # Llamar a la función que obtiene las recetas de la API
     recetas = obtener_recetas(ingredientes, diet, health, cuisineType, mealType, dishType, calories_min, calories_max, time)
     
-    return render(request, 'recetas/filtrarRecetas.html', {'recetas': recetas})
+    return render(request, 'recetas/filtrarRecetas.html', {'recetas': recetas, 'username': nombre_usuario(request)})

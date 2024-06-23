@@ -86,4 +86,24 @@ document.addEventListener('DOMContentLoaded', function() {
         caloriesMinInput.value = 0;
         caloriesMaxInput.value = 2000;
     }
+
+    // Lógica para redirigir según la visibilidad de los filtros
+    const searchForm = document.getElementById('search-form');
+    const searchButton = document.getElementById('search-button');
+    const filtrarRecetasUrl = "http://localhost:8000/filtrarRecetas/";  // URL completa para FiltrarRecetas
+    const buscarRecetasUrl = "http://localhost:8000/buscarRecetas/";    // URL completa para BuscarRecetas
+
+    searchButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Evita el envío del formulario por defecto
+
+        if (filterContainer.style.display === 'block') {
+            // Si los filtros están visibles, enviar a FiltrarRecetas
+            searchForm.action = filtrarRecetasUrl;
+        } else {
+            // Si los filtros no están visibles, enviar a BuscarRecetas
+            searchForm.action = buscarRecetasUrl;
+        }
+
+        searchForm.submit(); // Enviar el formulario
+    });
 });

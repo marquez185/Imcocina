@@ -11,11 +11,11 @@
             <div class="card card-body">
                 <h1>Bienvenido a IMCOCINA</h1>
                 <p>Encuentra recetas deliciosas y saludables con los ingredientes que tienes en casa.</p>
-                <form method="GET" action="{% url 'recetas:FiltrarRecetas' %}">
+                <form id="search-form" method="GET" action="">
                     <div class="input-group mb-3 justify-content-center">
                         <input type="text" name="ingredientes" class="form-control col-md-6" placeholder="Busca por ingredientes...">
                         <div class="input-group-append">
-                            <button class="btn btn-dark" type="submit">Buscar Recetas</button>
+                            <button id="search-button" class="btn btn-dark" type="submit">Buscar Recetas</button>
                         </div>
                     </div>
                     
