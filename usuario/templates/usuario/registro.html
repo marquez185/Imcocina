@@ -36,6 +36,10 @@
                 <div class="mb-4">
                     <input type="password" class="form-control" name="contrasena_correcta" placeholder="Confirma tu contraseña" required>
                 </div>
+                <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                    <label class="form-check-label text-white" for="terms">He leído y acepto los <a href="{% url 'terminos_uso' %}" class="text-info" target="_blank">Términos y Condiciones</a></label>
+                </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-dark">Crear</button>
                 </div>
