@@ -1,25 +1,42 @@
-{% extends "logicaNegocio/base.html" %}
+{% extends "usuario/base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="fw-bold text-center">Recetas Avaladas</h2>
-    <div class="row mt-4">
-        {% if recetas %}
-            <ul>
-                {% for receta in recetas %}
-                    <li>
-                        <h3>{{ receta.titulo }}</h3>
-                        <p><strong>Ingredientes:</strong> {{ receta.ingredientes }}</p>
-                        <p><strong>Pasos:</strong> {{ receta.pasos }}</p>
-                        <p><strong>Calorías:</strong> {{ receta.calorias }}</p>
-                        <p><strong>Información Nutricional:</strong> {{ receta.informacion_nutricional }}</p>
-                        <p><strong>Creador:</strong> {{ receta.usuario.first_name}} {{ receta.usuario.last_name}}</p>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No hay recetas disponibles.</p>
-        {% endif %}
+<style>
+    .receta-titulo {
+        color: white; /* Color blanco para los títulos de las recetas */
+    }
+    .receta-texto {
+        color: white; /* Color blanco para el texto de las recetas */
+    }
+    .receta-container {
+        background-color: #343a40; /* Fondo oscuro para las recetas */
+        padding: 20px;
+        margin: 20px 30px; /* Espacio entre los contenedores de recetas y los bordes */
+        border-radius: 10px;
+    }
+</style>
+<div class="container bf w-75 text-body mt-5 rounded shadow">
+    <div class="row align-items-stretch">
+        <div class="col">
+            <h2 class="fw-bold text-white text-center py-5">Recetas Avaladas</h2>
+            <div class="row mt-4">
+                {% if recetas %}
+                    <ul class="list-unstyled">
+                        {% for receta in recetas %}
+                            <li class="receta-container">
+                                <h3 class="receta-titulo">{{ receta.titulo }}</h3>
+                                <p class="receta-texto"><strong>Ingredientes:</strong> {{ receta.ingredientes }}</p>
+                                <p class="receta-texto"><strong>Pasos:</strong> {{ receta.pasos }}</p>
+                                <p class="receta-texto"><strong>Calorías:</strong> {{ receta.calorias }}</p>
+                                <p class="receta-texto"><strong>Información Nutricional:</strong> {{ receta.informacion_nutricional }}</p>                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="alert alert-info text-center">No hay recetas disponibles.</div>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
