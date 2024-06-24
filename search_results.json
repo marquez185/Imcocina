@@ -1,0 +1,70 @@
+{
+    "waste_reduction_results": [
+        {
+            "url": "https://www.gob.mx/profeco/documentos/evita-el-desperdicio-de-alimentos",
+            "title": "\nEvita el desperdicio de alimentos | Procuraduría Federal del Consumidor | Gobierno | gob.mx\n",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        },
+        {
+            "url": "https://www.eufic.org/es/seguridad-alimentaria/articulo/consejos-para-reducir-el-desperdicio-de-alimentos/",
+            "title": "7 consejos para reducir el desperdicio de alimentos | Eufic",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        },
+        {
+            "url": "https://www.fao.org/newsroom/story/15-quick-tips-for-reducing-food-waste-and-becoming-a-Food-hero/es",
+            "title": "\r\n\t15 consejos breves para reducir el desperdicio de alimentos y convertirse en héroe del sector alimentario\r\n",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        },
+        {
+            "url": "https://centrus.ibero.mx/index.php/2023/07/03/desperdicio-de-alimentos-que-podemos-hacer-para-evitarlo/",
+            "title": "Desperdicio de alimentos, ¿qué podemos hacer para evitarlo? - CENTRUS",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        },
+        {
+            "url": "https://www.sostenibilidad.com/vida-sostenible/desperdicio-de-comida-que-es-y-como-evitarlo/",
+            "title": "¿Qué podemos hacer para evitar el derroche de comida? Con una serie de sencillas acciones se puede luchar contra el malgasto de alimentos?",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp",
+            "author": "Ecoembes",
+            "publication_date": "2020-06-15"
+        },
+        {
+            "url": "https://www.portalambiental.com.mx/sabias-que/20231006/sostenibilidad-y-dieta-15-consejos-para-reducir-el-desperdicio-de-alimentos",
+            "title": "Sostenibilidad y dieta: 15 consejos para reducir el desperdicio de alimentos",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp",
+            "author": "OCU",
+            "publication_date": "2021-11-20"
+        }
+    ],
+    "food_utilization_results": [
+        {
+            "url": "https://www.3claveles.com/es/blog/trucos-para-aprovechar-al-maximo-los-alimentos-y-evitar-el-desperdicio-n393",
+            "title": "Trucos para aprovechar al máximo los alimentos y evitar el desperdicio",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        },
+        {
+            "url": "https://www.sifeme.com/preparar-los-alimentos-no-pierdan-nutrientes/",
+            "title": "Cómo preparar los alimentos para que no pierdan sus nutrientes - Sifeme",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        },
+        {
+            "url": "https://elgourmet.com/noticias/7-tips-para-aprovechar-al-maximo-los-alimentos-en-casa/",
+            "title": "7 tips para aprovechar al máximo los alimentos en casa",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        },
+        {
+            "url": "https://blogedenred.com.uy/2021/11/01/7-formas-de-aprovechar-los-alimentos-sobrantes/",
+            "title": "7 formas de aprovechar los alimentos sobrantes – Edenred Blog",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        },
+        {
+            "url": "https://muysaludable.sanitas.es/nutricion/aprovechar-los-nutrientes/",
+            "title": "Cómo aprovechar todos los nutrientes de lo que comes",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        },
+        {
+            "url": "http://vidasaludable.udec.cl/node/228",
+            "title": "Tips para aprovechar al máximo los alimentos y disminuir los desperdicios | vidasaludable.udec.cl",
+            "image": "/static/logicaNegocio/img/desperdicio_comida.webp"
+        }
+    ]
+}
