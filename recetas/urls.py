@@ -16,4 +16,6 @@ urlpatterns = [
     path('crear_receta/', views.crear_receta, name="crear_receta"),
     path('editar_receta/<int:receta_id>/', views.editar_receta, name="editar_receta"),
     path('eliminar_receta/<int:receta_id>/', views.eliminar_receta, name="eliminar_receta"),
+    # Ruta para ver recetas de nuestra BD
+    path('recetasAvaladas/', views.ver_recetas_avaladas, name="RecetasAvaladas"),
 ]

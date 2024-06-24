@@ -14,5 +14,4 @@ urlpatterns = [
     path('updatePerfil/', views.updatePerfil, name="UpdatePerfil"),
     path('logout/', LogoutView.as_view(), name="Logout"),
     path('favoritas/', views.recetas_favoritas, name="Favoritas"),
-    path('ver-recetas-avaladas/', views.ver_recetas_avaladas, name="VerRecetasAvaladas"),
 ]

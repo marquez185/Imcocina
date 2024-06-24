@@ -34,7 +34,7 @@
                         <a href="{% url 'usuario:Favoritas' %}" class="btn btn-secondary btn-custom">Mis recetas favoritas</a>
                     </div>
                     <div class="btn-container mb-3">
-                        <a href="{% url 'usuario:VerRecetasAvaladas' %}" class="btn btn-primary btn-custom">Ver Recetas Avaladas</a>
+                        <a href="{% url 'recetas:RecetasAvaladas' %}" class="btn btn-primary btn-custom">Ver Recetas Avaladas</a>
                     </div>
                     {% if user.is_superuser %}
                     <div class="btn-container mb-3">

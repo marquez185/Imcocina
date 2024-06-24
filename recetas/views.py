@@ -84,24 +84,45 @@ def crud_recetas(request):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def crear_receta(request):
+    # if request.method == 'POST':
+    #     titulo = request.POST['titulo']
+    #     ingredientes = request.POST['ingredientes']
+    #     pasos = request.POST['pasos']
+    #     calorias = request.POST['calorias']
+    #     informacion_nutricional = request.POST['informacion_nutricional']
+    #     creador = request.user.username
+
+    #     Receta.objects.create(
+    #         titulo=titulo,
+    #         ingredientes=ingredientes,
+    #         pasos=pasos,
+    #         calorias=calorias,
+    #         informacion_nutricional=informacion_nutricional,
+    #         usuario=request.user,
+    #         creador=creador
+    #     )
+    #     return redirect('recetas:crud_recetas')
+    # return render(request, 'recetas/crear_receta.html')
     if request.method == 'POST':
         titulo = request.POST['titulo']
         ingredientes = request.POST['ingredientes']
         pasos = request.POST['pasos']
         calorias = request.POST['calorias']
         informacion_nutricional = request.POST['informacion_nutricional']
-        creador = request.user.username
-
-        Receta.objects.create(
+        
+        usuario = request.user  # Usar el usuario autenticado directamente
+        
+        nueva_receta = Receta(
             titulo=titulo,
             ingredientes=ingredientes,
             pasos=pasos,
             calorias=calorias,
             informacion_nutricional=informacion_nutricional,
-            usuario=request.user,
-            creador=creador
+            usuario=usuario  # Asignar el usuario directamente
         )
-        return redirect('recetas:crud_recetas')
+        nueva_receta.save()
+        return redirect('recetas:crud_recetas')  # Redirigir a la lista de recetas
+
     return render(request, 'recetas/crear_receta.html')
 
 @login_required
@@ -124,3 +145,8 @@ def eliminar_receta(request, receta_id):
     receta = get_object_or_404(Receta, pk=receta_id)
     receta.delete()
     return redirect('recetas:crud_recetas')
+
+@login_required
+def ver_recetas_avaladas(request):
+    recetas = Receta.objects.all()  # Obtén todas las recetas desde la base de datos
+    return render(request, 'recetas/VerRecetasAvaladas.html', {'recetas': recetas})

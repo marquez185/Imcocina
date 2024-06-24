@@ -1,0 +1,25 @@
+{% extends "logicaNegocio/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="fw-bold text-center">Recetas Avaladas</h2>
+    <div class="row mt-4">
+        {% if recetas %}
+            <ul>
+                {% for receta in recetas %}
+                    <li>
+                        <h3>{{ receta.titulo }}</h3>
+                        <p><strong>Ingredientes:</strong> {{ receta.ingredientes }}</p>
+                        <p><strong>Pasos:</strong> {{ receta.pasos }}</p>
+                        <p><strong>Calorías:</strong> {{ receta.calorias }}</p>
+                        <p><strong>Información Nutricional:</strong> {{ receta.informacion_nutricional }}</p>
+                        <p><strong>Creador:</strong> {{ receta.usuario.first_name}} {{ receta.usuario.last_name}}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay recetas disponibles.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -54,14 +54,12 @@ class Busqueda(models.Model):
         return self.titulo
 
 class Receta(models.Model):
-    id = models.AutoField(primary_key=True)
     titulo = models.CharField(max_length=100)
     ingredientes = models.TextField()
     pasos = models.TextField()
     calorias = models.IntegerField()
     informacion_nutricional = models.TextField()
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='recetas')
-    creador = models.CharField(max_length=100)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # Cambiado a User
 
     def __str__(self):
         return self.titulo

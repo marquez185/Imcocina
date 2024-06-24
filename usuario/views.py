@@ -214,8 +214,3 @@ def recetas_favoritas(request):
     favoritas = Favoritos.objects.filter(usuario=request.user)
     context = {'favoritas': favoritas}
     return render(request, "usuario/recetas_favoritas.html", context)
-
-@login_required
-def ver_recetas_avaladas(request):
-    # Recetas Avaladas
-    return render(request, 'usuario/VerRecetasAvaladas.html')
