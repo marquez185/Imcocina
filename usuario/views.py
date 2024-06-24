@@ -12,7 +12,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
-from BD.models import Favoritos
+from BD.models import Favoritos, Receta
 import re
 
 def validar_contrasena(contrasena):
@@ -217,5 +217,6 @@ def recetas_favoritas(request):
 
 @login_required
 def ver_recetas_avaladas(request):
-    # Recetas Avaladas
-    return render(request, 'usuario/VerRecetasAvaladas.html')
+    recetas = Receta.objects.all()  # Assuming Receta is the model for BD_receta
+    context = {'recetas': recetas}
+    return render(request, "usuario/VerRecetasAvaladas.html", context)
