@@ -84,25 +84,6 @@ def crud_recetas(request):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def crear_receta(request):
-    # if request.method == 'POST':
-    #     titulo = request.POST['titulo']
-    #     ingredientes = request.POST['ingredientes']
-    #     pasos = request.POST['pasos']
-    #     calorias = request.POST['calorias']
-    #     informacion_nutricional = request.POST['informacion_nutricional']
-    #     creador = request.user.username
-
-    #     Receta.objects.create(
-    #         titulo=titulo,
-    #         ingredientes=ingredientes,
-    #         pasos=pasos,
-    #         calorias=calorias,
-    #         informacion_nutricional=informacion_nutricional,
-    #         usuario=request.user,
-    #         creador=creador
-    #     )
-    #     return redirect('recetas:crud_recetas')
-    # return render(request, 'recetas/crear_receta.html')
     if request.method == 'POST':
         titulo = request.POST['titulo']
         ingredientes = request.POST['ingredientes']

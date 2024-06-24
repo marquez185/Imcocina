@@ -1,4 +1,6 @@
 import requests
+import json
+import os
 from django.shortcuts import render, HttpResponse
 from bs4 import BeautifulSoup
 from googlesearch import search
@@ -35,7 +37,6 @@ def fetch_bbc_news():
 
     return news_list
 
-# search_tips.py
 def search_tips():
     waste_reduction_query = "Consejos de la reducción de desperdicio en alimentos"
     food_utilization_query = "Cómo aprovechar todos los alimentos"
@@ -43,6 +44,7 @@ def search_tips():
     waste_reduction_results = []
     food_utilization_results = []
 
+    # Supongamos que tienes una función `search` que obtiene enlaces basados en la query
     for link in search(waste_reduction_query, num_results=2, lang="es"):
         waste_reduction_results.append(link)
 
@@ -50,6 +52,46 @@ def search_tips():
         food_utilization_results.append(link)
     
     return waste_reduction_results, food_utilization_results
+
+def fetch_search_results(links):
+    search_results = []
+    default_image = '/static/logicaNegocio/img/desperdicio_comida.webp'
+
+    for url in links:
+        result = {'url': url, 'title': '', 'image': default_image}
+
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, 'html.parser')
+
+                # Obtener título
+                title_tag = soup.find('title')
+                if title_tag:
+                    result['title'] = title_tag.text
+
+                # Obtener imagen
+                image_tag = soup.find('img', src=True)
+                if image_tag:
+                    img_src = image_tag['src']
+                    if img_src.endswith('.webp'):
+                        result['image'] = img_src
+        except Exception as e:
+            print(f"Error fetching {url}: {e}")
+
+        search_results.append(result)
+    
+    return search_results
+
+def save_results_to_json(filename, data):
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+def load_results_from_json(filename):
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
 
 '''MANEJO DE NOMBRE DE SESION'''
 
@@ -76,12 +118,33 @@ def noticias(request):
     })
 
 def desperdicio(request):
-    waste_reduction_links, food_utilization_links = search_tips()
-    return render(request, "logicaNegocio/desperdicio.html", {
-        'waste_reduction_links': waste_reduction_links,
-        'food_utilization_links': food_utilization_links,
-        'username': nombre_usuario(request)
-    })
+    json_filename = 'search_results.json'
+    
+    # Cargar resultados desde el archivo JSON si existe
+    cached_results = load_results_from_json(json_filename)
+    waste_reduction_results = cached_results.get('waste_reduction_results', [])
+    food_utilization_results = cached_results.get('food_utilization_results', [])
+
+    if not waste_reduction_results or not food_utilization_results:
+        waste_reduction_links, food_utilization_links = search_tips()
+
+        waste_reduction_results = fetch_search_results(waste_reduction_links)
+        food_utilization_results = fetch_search_results(food_utilization_links)
+
+        # Guardar los resultados en el archivo JSON
+        results_to_save = {
+            'waste_reduction_results': waste_reduction_results,
+            'food_utilization_results': food_utilization_results
+        }
+        save_results_to_json(json_filename, results_to_save)
+
+    context = {
+        'waste_reduction_results': waste_reduction_results,
+        'food_utilization_results': food_utilization_results,
+    }
+
+    return render(request, 'logicaNegocio/desperdicio.html', context)
+
 
 def nosotros(request):
     return render(request, "logicaNegocio/nosotros.html", {'username': nombre_usuario(request)})
