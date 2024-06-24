@@ -3,31 +3,95 @@
 {% load static %}
 
 {% block content %}
-    <!-- Título de la Sección Nosotros -->
-    <section class="additional-info-title mt-5 header-image">
-        <h3 class="text-center">NOTICIAS</h3>
-    </section>
 
     <!-- Información Adicional Subdividida -->
-    <section class="row mt-3">
+    <section class="container mt-3">
         <!-- Sección Artículo: Noticias de Nutrición -->
-        <article class="card mb-4 h-100 rounded bg-white-transparent col-md-4 article">
-            <div class="card-body text-center">
-                <h5 class="card-title">Noticias Nutrición</h5>
-                <div class="highlight-content d-flex flex-column justify-content-center">
-                    <ul class="list-news">
-                        {% for item in news %}
-                            <li class="news-item">
-                                <p>{{ item.title }}</p>
-                                <a href="{{ item.link }}">
-                                    <img src="{{ item.image_url }}" alt="{{ item.title }}" class="news-image">
-                                </a>
-                                <p>Publicado el: {{ item.pub_date }}</p>
-                            </li>
-                        {% endfor %}
-                    </ul>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card bg-white-transparent p-3 mb-4">
+                    <h5 class="section-title">Noticias Nutrición</h5>
                 </div>
             </div>
-        </article>
+        </div>
+        <div class="row">
+            {% for item in news %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <a href="{{ item.link }}" target="_blank">
+                                <img src="{{ item.image_url }}" alt="{{ item.title }}" class="card-img-top mb-2" loading="lazy">
+                            </a>
+                            <p>Publicado el: {{ item.pub_date }}</p>
+                            <p>Dale click a la imagen para más información</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </section>
+
+    <style>
+        .container {
+            width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col-md-4 {
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            max-width: 33.333333%;
+            flex: 0 0 33.333333%;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .bg-white-transparent {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        .p-3 {
+            padding: 1rem !important;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+
+        @media (max-width: 450px) {
+            .col-md-4 {
+                max-width: 100%;
+                flex: 0 0 100%;
+            }
+        }
+    </style>
 {% endblock %}

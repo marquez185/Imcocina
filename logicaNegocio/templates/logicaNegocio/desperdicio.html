@@ -5,7 +5,13 @@
 <section>
     <div class="container">
         <!-- Sección Consejos de Reducción de Desperdicio -->
-        <h5 class="section-title">Consejos de Reducción de Desperdicio</h5>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card bg-white-transparent p-3 mb-4">
+                    <h5 class="section-title">Consejos de Reducción de Desperdicio</h5>
+                </div>
+            </div>
+        </div>
         <div class="row">
             {% for result in waste_reduction_results %}
                 <div class="col-md-4 mb-4">
@@ -23,7 +29,13 @@
         </div>
 
         <!-- Sección Cómo Aprovechar Todos los Alimentos -->
-        <h5 class="section-title">Cómo Aprovechar Todos los Alimentos</h5>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card bg-white-transparent p-3 mb-4">
+                    <h5 class="section-title">Cómo Aprovechar Todos los Alimentos</h5>
+                </div>
+            </div>
+        </div>
         <div class="row">
             {% for result in food_utilization_results %}
                 <div class="col-md-4 mb-4">
@@ -82,6 +94,26 @@
     .card-title {
         font-size: 1.25rem;
         font-weight: bold;
+    }
+
+    .bg-white-transparent {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+    }
+
+    .p-3 {
+        padding: 1rem !important;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    @media (max-width: 450px) {
+        .col-md-4 {
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
     }
 </style>
 {% endblock %}

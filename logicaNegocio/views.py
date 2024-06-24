@@ -13,7 +13,7 @@ def fetch_bbc_news():
     soup = BeautifulSoup(response.content, 'html.parser')
 
     news_list = []
-    articles = soup.select('.bbc-t44f9r')[:4]  # Limita a las primeras 4 noticias
+    articles = soup.select('.bbc-t44f9r')[:6]  # Limita a las primeras 4 noticias
 
     for article in articles:
         title = article.find('h2').text

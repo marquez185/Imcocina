@@ -61,11 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (caloriesSliderElement) {
         noUiSlider.create(caloriesSliderElement, {
-            start: [0, 2000],
+            start: [0, 5000],
             connect: true,
             range: {
                 'min': 0,
-                'max': 2000
+                'max': 5000
             },
             step: 10
         });
@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Inicializa los valores de visualización
         caloriesMin.innerHTML = '0 calorías';
-        caloriesMax.innerHTML = '2000 calorías';
+        caloriesMax.innerHTML = '5000 calorías';
         caloriesMinInput.value = 0;
-        caloriesMaxInput.value = 2000;
+        caloriesMaxInput.value = 5000;
     }
 
     // Lógica para redirigir según la visibilidad de los filtros
