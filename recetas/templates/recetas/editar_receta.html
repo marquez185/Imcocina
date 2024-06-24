@@ -1,30 +1,43 @@
-{% extends "logicaNegocio/base.html" %}
+{% extends "usuario/base.html" %}
 {% load static %}
 
 {% block content %}
-<h1>Editar Receta</h1>
-<form method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="titulo">Título</label>
-        <input type="text" class="form-control" id="titulo" name="titulo" value="{{ receta.titulo }}" required>
+<style>
+    .form-label {
+        color: white; /* Color blanco para las etiquetas del formulario */
+    }
+</style>
+<div class="container bf w-75 text-body mt-5 rounded shadow">
+    <div class="row align-items-stretch">
+        <div class="col">
+            <h2 class="fw-bold text-white text-center py-5">Editar Receta</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                    <label for="titulo" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" value="{{ receta.titulo }}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="ingredientes" class="form-label">Ingredientes</label>
+                    <textarea class="form-control" id="ingredientes" name="ingredientes" rows="3" required>{{ receta.ingredientes }}</textarea>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="pasos" class="form-label">Pasos</label>
+                    <textarea class="form-control" id="pasos" name="pasos" rows="3" required>{{ receta.pasos }}</textarea>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="calorias" class="form-label">Calorías</label>
+                    <input type="number" class="form-control" id="calorias" name="calorias" value="{{ receta.calorias }}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="informacion_nutricional" class="form-label">Información Nutricional</label>
+                    <textarea class="form-control" id="informacion_nutricional" name="informacion_nutricional" rows="3" required>{{ receta.informacion_nutricional }}</textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="ingredientes">Ingredientes</label>
-        <textarea class="form-control" id="ingredientes" name="ingredientes" rows="3" required>{{ receta.ingredientes }}</textarea>
-    </div>
-    <div class="form-group">
-        <label for="pasos">Pasos</label>
-        <textarea class="form-control" id="pasos" name="pasos" rows="3" required>{{ receta.pasos }}</textarea>
-    </div>
-    <div class="form-group">
-        <label for="calorias">Calorías</label>
-        <input type="number" class="form-control" id="calorias" name="calorias" value="{{ receta.calorias }}" required>
-    </div>
-    <div class="form-group">
-        <label for="informacion_nutricional">Información Nutricional</label>
-        <textarea class="form-control" id="informacion_nutricional" name="informacion_nutricional" rows="3" required>{{ receta.informacion_nutricional }}</textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Actualizar</button>
-</form>
+</div>
 {% endblock %}

@@ -1,36 +1,63 @@
-{% extends "logicaNegocio/base.html" %}
+{% extends "usuario/base.html" %}
+
 {% load static %}
 
 {% block content %}
-<h1>Gestión de Recetas</h1>
-<a href="{% url 'recetas:crear_receta' %}" class="btn btn-success">Crear Nueva Receta</a>
-<table class="table table-striped mt-3">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Ingredientes</th>
-            <th>Pasos</th>
-            <th>Calorías</th>
-            <th>Información Nutricional</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for receta in recetas %}
-        <tr>
-            <td>{{ receta.id }}</td>
-            <td>{{ receta.titulo }}</td>
-            <td>{{ receta.ingredientes }}</td>
-            <td>{{ receta.pasos }}</td>
-            <td>{{ receta.calorias }}</td>
-            <td>{{ receta.informacion_nutricional }}</td>
-            <td>
-                <a href="{% url 'recetas:editar_receta' receta.id %}" class="btn btn-primary">Editar</a>
-                <a href="{% url 'recetas:eliminar_receta' receta.id %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar esta receta?')">Eliminar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<style>
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+        background-color: inherit; /* No cambia el fondo al pasar el ratón */
+    }
+    .table-hover tbody tr td, .table-hover tbody tr th {
+        color: white; /* El texto sigue siendo blanco */
+    }
+    .table-hover tbody tr a {
+        color: white; /* Los enlaces siguen siendo blancos */
+    }
+    .table-hover tbody tr a:hover {
+        color: white; /* El color del enlace no cambia al pasar el ratón */
+    }
+</style>
+<div class="container bf w-75 text-body mt-5 rounded shadow">
+    <div class="row align-items-stretch">
+        <div class="col">
+            <h2 class="fw-bold text-white text-center py-5">Gestión de Recetas</h2>
+            <div class="text-center mb-4">
+                <a href="{% url 'recetas:crear_receta' %}" class="btn btn-success">Crear Nueva Receta</a>
+            </div>
+            {% if recetas %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Título</th>
+                                <th>Ingredientes</th>
+                                <th>Pasos</th>
+                                <th>Calorías</th>
+                                <th>Información Nutricional</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for receta in recetas %}
+                            <tr>
+                                <td>{{ receta.titulo }}</td>
+                                <td class="text-wrap" style="max-width: 200px;">{{ receta.ingredientes }}</td>
+                                <td class="text-wrap" style="max-width: 200px;">{{ receta.pasos }}</td>
+                                <td>{{ receta.calorias }}</td>
+                                <td class="text-wrap" style="max-width: 200px;">{{ receta.informacion_nutricional }}</td>
+                                <td>
+                                    <a href="{% url 'recetas:editar_receta' receta.id %}" class="btn btn-primary">Editar</a>
+                                    <a href="{% url 'recetas:eliminar_receta' receta.id %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar esta receta?')">Eliminar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info text-center">No hay recetas disponibles.</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
