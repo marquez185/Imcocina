@@ -2,8 +2,10 @@ import requests
 import random
 
 # Configura tus credenciales de Edamam
-app_id = '47feccff'
-app_key = '8a0789f66cca1de26802c29469689e28'
+# app_id = '47feccff'
+# app_key = '8a0789f66cca1de26802c29469689e28'
+app_id = '54866250'
+app_key = '9ae82763987957791cf01e17edf276ea'
 
 # Define la función para buscar recetas
 def obtener_recetas(ingredientes, diet, health, cuisineType, mealType, dishType, calories_min, calories_max, time):
